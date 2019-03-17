@@ -5,8 +5,4 @@
     <RootNamespace>Boruc.LabEquip.Services.Equipment.Domain</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="SeedWork\" />
-  </ItemGroup>
-
 </Project>
