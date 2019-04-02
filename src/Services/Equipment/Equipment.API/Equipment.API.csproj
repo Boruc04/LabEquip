@@ -3,7 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <RootNamespace>Boruc.LabEquip.Services.Equipping.API</RootNamespace>
+    <RootNamespace>Boruc.LabEquip.Services.Equipment.API</RootNamespace>
+    <AssemblyName>Boruc.LabEquip.Equipment.API</AssemblyName>
   </PropertyGroup>
 
 </Project>

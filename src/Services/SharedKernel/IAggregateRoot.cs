@@ -1,4 +1,4 @@
-﻿namespace Boruc.LabEquip.SharedKernel
+﻿namespace Boruc.LabEquip.Services.SharedKernel
 {
 	public interface IAggregateRoot { }
 }

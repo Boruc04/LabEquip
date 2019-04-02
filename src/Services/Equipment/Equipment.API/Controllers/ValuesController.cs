@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 
-namespace Boruc.LabEquip.Services.Equipping.API.Controllers
+namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]

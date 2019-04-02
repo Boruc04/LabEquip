@@ -1,8 +1,8 @@
-﻿using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using MediatR;
 
-namespace Boruc.LabEquip.SharedKernel
+namespace Boruc.LabEquip.Services.SharedKernel
 {
 	public abstract class Entity
 	{

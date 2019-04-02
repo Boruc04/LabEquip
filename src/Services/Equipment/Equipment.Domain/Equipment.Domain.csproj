@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Boruc.LabEquip.Services.Equipping.Domain</RootNamespace>
-    <AssemblyName>Equipping.Domain</AssemblyName>
+    <RootNamespace>Boruc.LabEquip.Services.Equipment.Domain</RootNamespace>
+    <AssemblyName>Boruc.LabEquip.Equipment.Domain</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

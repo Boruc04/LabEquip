@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-
-namespace Boruc.LabEquip.Services.Equipping.API
+﻿namespace Boruc.LabEquip.Services.Equipment.API
 {
 	public class Program
 	{

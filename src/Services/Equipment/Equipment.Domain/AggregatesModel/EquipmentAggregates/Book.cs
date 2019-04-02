@@ -1,6 +1,6 @@
-﻿using Boruc.LabEquip.SharedKernel;
+﻿using Boruc.LabEquip.Services.SharedKernel;
 
-namespace Boruc.LabEquip.Services.Equipping.Domain.AggregatesModel.EquipmentAggregates
+namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregates
 {
 	public class Book : Entity
 	{

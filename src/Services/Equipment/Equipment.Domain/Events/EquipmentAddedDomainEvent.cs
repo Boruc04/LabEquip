@@ -1,13 +1,12 @@
-﻿using Boruc.LabEquip.Services.Equipping.Domain.AggregatesModel.EquipmentAggregates;
-using MediatR;
+﻿using MediatR;
 
-namespace Boruc.LabEquip.Services.Equipping.Domain.Events
+namespace Boruc.LabEquip.Services.Equipment.Domain.Events
 {
 	public class EquipmentAddedDomainEvent : INotification
 	{
-		public Equipment Equipment { get; }
+		public AggregatesModel.EquipmentAggregates.Equipment Equipment { get; }
 
-		public EquipmentAddedDomainEvent(Equipment equipment)
+		public EquipmentAddedDomainEvent(AggregatesModel.EquipmentAggregates.Equipment equipment)
 		{
 			Equipment = equipment;
 		}

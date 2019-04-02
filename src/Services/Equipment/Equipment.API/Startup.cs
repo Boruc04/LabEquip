@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Boruc.LabEquip.Services.Equipping.API
+﻿namespace Boruc.LabEquip.Services.Equipment.API
 {
 	public class Startup
 	{

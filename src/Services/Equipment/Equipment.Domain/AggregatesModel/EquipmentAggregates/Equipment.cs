@@ -1,8 +1,8 @@
-﻿using Boruc.LabEquip.Services.Equipping.Domain.Events;
-using Boruc.LabEquip.SharedKernel;
-using System;
+﻿using System;
+using Boruc.LabEquip.Services.Equipment.Domain.Events;
+using Boruc.LabEquip.Services.SharedKernel;
 
-namespace Boruc.LabEquip.Services.Equipping.Domain.AggregatesModel.EquipmentAggregates
+namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregates
 {
 	public class Equipment : Entity, IAggregateRoot
 	{
