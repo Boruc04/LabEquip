@@ -6,18 +6,12 @@ namespace Boruc.LabEquip.SharedKernel
 {
 	public abstract class Entity
 	{
-		int? _requestedHashCode;
-		int _Id;
+		private int? _requestedHashCode;
+		private int _id;
 		public virtual int Id
 		{
-			get
-			{
-				return _Id;
-			}
-			protected set
-			{
-				_Id = value;
-			}
+			get => _id;
+			protected set => _id = value;
 		}
 
 		private List<INotification> _domainEvents;
@@ -79,7 +73,7 @@ namespace Boruc.LabEquip.SharedKernel
 		public static bool operator ==(Entity left, Entity right)
 		{
 			if (Object.Equals(left, null))
-				return (Object.Equals(right, null)) ? true : false;
+				return (Object.Equals(right, null));
 			else
 				return left.Equals(right);
 		}

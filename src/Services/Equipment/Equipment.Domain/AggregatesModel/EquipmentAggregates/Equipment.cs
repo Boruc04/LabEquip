@@ -31,7 +31,5 @@ namespace Boruc.LabEquip.Services.Equipping.Domain.AggregatesModel.EquipmentAggr
 		{
 			var equipmentAddedDomainEvent = new EquipmentAddedDomainEvent(this);
 		}
-
-
 	}
 }
