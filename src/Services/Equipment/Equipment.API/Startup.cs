@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Boruc.LabEquip.Services.Equipment.API.Infrastructure.Filters;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +19,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+			services.AddCustomMvc();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +37,23 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 			app.UseHttpsRedirection();
 			app.UseMvc();
+		}
+	}
+
+	static class CustomExtensionsMethods
+	{
+		public static IServiceCollection AddCustomMvc(this IServiceCollection services)
+		{
+			services.AddMvc(options =>
+				{
+					options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+				})
+				.SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+				.AddControllersAsServices();
+
+			//TODO dig a bit more into AddCors topic.
+
+			return services;
 		}
 	}
 }
