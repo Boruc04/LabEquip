@@ -1,6 +1,6 @@
-﻿using System;
-using Boruc.LabEquip.Services.Equipment.Domain.Events;
+﻿using Boruc.LabEquip.Services.Equipment.Domain.Events;
 using Boruc.LabEquip.Services.SharedKernel;
+using System;
 
 namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregates
 {
@@ -10,14 +10,14 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 
 		private string _number;
 
-		private int _bookId;
-		public Book Book { get; private set; }
+		public int? GetBookId => _bookId;
+		private int? _bookId;
 
-		private DateTime _addedDate;
+		private DateTime _addedOnUTC;
 
 		protected Equipment()
 		{
-			_addedDate = DateTime.UtcNow;
+			_addedOnUTC = DateTime.UtcNow;
 		}
 
 		public Equipment(string name, string number, Book book) : this()
