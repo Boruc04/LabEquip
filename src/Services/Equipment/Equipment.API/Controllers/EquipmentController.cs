@@ -25,7 +25,6 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		{
 			var equipments = await _equipmentQueries.GetEquipmentAsync();
 			return Ok(equipments);
-			throw new NotImplementedException();
 		}
 	}
 }
