@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Boruc.LabEquip.Services.Equipment.Application.Queries;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Boruc.LabEquip.Services.Equipment.API.Application.Queries;
 
 namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 {
@@ -18,12 +17,11 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 			_equipmentQueries = equipmentQueries;
 		}
 
-
 		[HttpGet]
 		[ProducesResponseType(typeof(IEnumerable<Application.Queries.Equipment>), (int)HttpStatusCode.OK)]
 		public async Task<ActionResult<IEnumerable<Application.Queries.Equipment>>> GetEquipmentsAsync()
 		{
-			var equipments = await _equipmentQueries.GetEquipmentAsync();
+			var equipments = await _equipmentQueries.GetEquipmentsAsync();
 			return Ok(equipments);
 		}
 	}

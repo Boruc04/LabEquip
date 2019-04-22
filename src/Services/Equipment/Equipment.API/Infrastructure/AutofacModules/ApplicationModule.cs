@@ -2,6 +2,8 @@
 {
 	public class ApplicationModule : Autofac.Module
 	{
+
+
 		public ApplicationModule(string connectionString)
 		{
 			throw new System.NotImplementedException();

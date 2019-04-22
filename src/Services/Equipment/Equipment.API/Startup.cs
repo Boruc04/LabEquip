@@ -27,7 +27,10 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
-			services.AddCustomMvc();
+			services.AddCustomMvc()
+				.AddCustomDbContext(Configuration)
+				.AddCustomSwagger(Configuration)
+				.AddCustomConfiguration(Configuration);
 
 			var container = new ContainerBuilder();
 			container.Populate(services);

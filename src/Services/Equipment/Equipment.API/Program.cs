@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
+using System;
+using System.IO;
 
 namespace Boruc.LabEquip.Services.Equipment.API
 {
@@ -43,17 +44,36 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 		private static IConfiguration GetConfiguration()
 		{
-			throw new System.NotImplementedException();
+			var configurationBuilder = new ConfigurationBuilder()
+				.SetBasePath(Directory.GetCurrentDirectory())
+				.AddJsonFile("appsettings.json", false, true)
+				.AddEnvironmentVariables();
+
+			return configurationBuilder.Build();
 		}
 
 		private static ILogger CreateSerilogLogger(IConfiguration configuration)
 		{
-			throw new System.NotImplementedException();
+			var loggerConfiguration = new LoggerConfiguration()
+				.MinimumLevel.Verbose()
+				.Enrich.WithProperty("ApplicationContext", AppName)
+				.Enrich.FromLogContext()
+				.WriteTo.Console()
+				//.WriteTo.Elasticsearch() TODO: introduce when elastic search will be ready.
+				.ReadFrom.Configuration(configuration)
+				.CreateLogger();
+			return loggerConfiguration;
 		}
 
 		private static IWebHost BuildWebHost(IConfiguration configuration, string[] args)
 		{
-			throw new NotImplementedException();
+			return WebHost.CreateDefaultBuilder(args)
+				.CaptureStartupErrors(false)
+				.UseStartup<Startup>()
+				.UseContentRoot(Directory.GetCurrentDirectory())
+				.UseConfiguration(configuration)
+				.UseSerilog()
+				.Build();
 		}
 	}
 }
