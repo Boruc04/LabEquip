@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
+    <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
@@ -20,6 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Services\Equipment\Equipment.API\Equipment.API.csproj" />
+    <ProjectReference Include="..\..\..\src\Services\Equipment\Equipment.Application\Equipment.Application.csproj" />
     <ProjectReference Include="..\..\..\src\Services\Equipment\Equipment.Domain\Equipment.Domain.csproj" />
   </ItemGroup>
 

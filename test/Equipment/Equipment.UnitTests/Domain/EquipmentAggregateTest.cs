@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Boruc.LabEquip.Equipment.UnitTests
+namespace Boruc.LabEquip.Equipment.UnitTests.Domain
 {
 	using Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
 
