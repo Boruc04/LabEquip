@@ -43,7 +43,6 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
-			var pathBase = Configuration["PATH_BASE"];
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -63,7 +62,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 				.UseSwaggerUI(options =>
 				{
 					options.SwaggerEndpoint(
-						$"{(!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty)}/swagger/v1/swagger.json",
+						@"/swagger/v1/swagger.json",
 						"Equipment.API V1");
 					options.OAuthClientId("equipmentswaggerui");
 					options.OAuthAppName("Equipment Swagger UI");
