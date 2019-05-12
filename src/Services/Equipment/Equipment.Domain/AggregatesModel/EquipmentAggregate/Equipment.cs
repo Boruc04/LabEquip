@@ -1,9 +1,10 @@
-﻿using Boruc.LabEquip.Services.Equipment.Domain.Events;
-using Boruc.LabEquip.Services.SharedKernel;
-using System;
+﻿using System;
 
-namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregates
+namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate
 {
+	using Events;
+	using SharedKernel;
+
 	public class Equipment : Entity, IAggregateRoot
 	{
 		private string _name;
@@ -20,11 +21,10 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 			_addedOnUTC = DateTime.UtcNow;
 		}
 
-		public Equipment(string name, string number, Book book) : this()
+		public Equipment(string name, string number) : this()
 		{
-			_name = name;
-			_number = number;
-			_bookId = book.Id;
+			_name = !string.IsNullOrWhiteSpace(name) ? name : throw new ArgumentNullException(nameof(name));
+			_number = !string.IsNullOrWhiteSpace(number) ? number : throw new ArgumentNullException(nameof(number));
 		}
 
 		private void AddEquipmentAddedDomainEvent()

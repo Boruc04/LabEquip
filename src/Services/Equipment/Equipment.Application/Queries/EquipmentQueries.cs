@@ -8,7 +8,7 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 {
 	public class EquipmentQueries : IEquipmentQueries
 	{
-		private readonly string _connectionString = string.Empty;
+		private readonly string _connectionString;
 
 		public EquipmentQueries(string connectionString)
 		{

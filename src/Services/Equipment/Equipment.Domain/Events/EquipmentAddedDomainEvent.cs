@@ -2,11 +2,13 @@
 
 namespace Boruc.LabEquip.Services.Equipment.Domain.Events
 {
+	using AggregatesModel.EquipmentAggregate;
+
 	public class EquipmentAddedDomainEvent : INotification
 	{
-		public AggregatesModel.EquipmentAggregates.Equipment Equipment { get; }
+		public Equipment Equipment { get; }
 
-		public EquipmentAddedDomainEvent(AggregatesModel.EquipmentAggregates.Equipment equipment)
+		public EquipmentAddedDomainEvent(Equipment equipment)
 		{
 			Equipment = equipment;
 		}

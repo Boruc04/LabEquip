@@ -1,13 +1,14 @@
-﻿using System;
-using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregates;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 
 namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
 {
-	class EquipmentEntityTypeConfiguration : IEntityTypeConfiguration<Domain.AggregatesModel.EquipmentAggregates.Equipment>
+	using  Domain.AggregatesModel.EquipmentAggregate;
+
+	class EquipmentEntityTypeConfiguration : IEntityTypeConfiguration<Equipment>
 	{
-		public void Configure(EntityTypeBuilder<Domain.AggregatesModel.EquipmentAggregates.Equipment> builder)
+		public void Configure(EntityTypeBuilder<Equipment> builder)
 		{
 			builder.ToTable("equipments", EquipmentContext.DEFAULT_SCHEMA);
 
