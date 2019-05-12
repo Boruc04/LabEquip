@@ -270,3 +270,4 @@ pub/
 
 # Ignore HealthCheckdb
 *healthchecksdb*
+/logs/api

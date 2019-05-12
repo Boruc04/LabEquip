@@ -55,6 +55,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 		private static ILogger CreateSerilogLogger(IConfiguration configuration)
 		{
 			var logsFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName).CreateSubdirectory("logs\\api").FullName;
+			logsFilePath += "\\logs.txt";
 
 			var loggerConfiguration = new LoggerConfiguration()
 				.MinimumLevel.Verbose()
