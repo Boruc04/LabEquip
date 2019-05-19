@@ -8,6 +8,10 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 	{
 		private string _id;
 
+		protected Book()
+		{
+		}
+
 		public Book(string id)
 		{
 			_id = !string.IsNullOrWhiteSpace(id) ? id : throw new ArgumentNullException(nameof(id));

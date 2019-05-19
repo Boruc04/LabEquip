@@ -23,9 +23,6 @@ namespace Boruc.LabEquip.Services.Equipment.API
 				Log.Information("Configuring web host ({ApplicationContext})...", AppName);
 				var host = BuildWebHost(configuration, args);
 
-				Log.Information("Applying migrations ({ApplicationContext})...", AppName);
-				//TODO check if needed migrateDbContext
-
 				Log.Information("Starting web host ({ApplicationContext})...", AppName);
 				host.Run();
 
@@ -74,7 +71,6 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			return WebHost.CreateDefaultBuilder(args)
 				.CaptureStartupErrors(false)
 				.UseStartup<Startup>()
-				.UseContentRoot(Directory.GetCurrentDirectory())
 				.UseConfiguration(configuration)
 				.UseSerilog()
 				.Build();

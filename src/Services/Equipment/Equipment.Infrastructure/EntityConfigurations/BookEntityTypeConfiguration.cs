@@ -1,10 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
 {
-	class BookEntityTypeConfiguration
+	using Domain.AggregatesModel.EquipmentAggregate;
+	using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+	class BookEntityTypeConfiguration : IEntityTypeConfiguration<Book>
 	{
+		public void Configure(EntityTypeBuilder<Book> builder)
+		{
+			builder.ToTable("books", EquipmentContext.DEFAULT_SCHEMA);
+
+			builder.HasKey(b => b.Id);
+
+			builder.Ignore(b => b.DomainEvents);
+
+			builder.Property(b => b.Id).ForSqlServerUseSequenceHiLo("bookseq", EquipmentContext.DEFAULT_SCHEMA);
+		}
 	}
 }

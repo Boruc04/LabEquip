@@ -1,8 +1,5 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules;
-using Boruc.LabEquip.Services.Equipment.API.Infrastructure.Filters;
-using Boruc.LabEquip.Services.Equipment.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +13,10 @@ using System.Reflection;
 
 namespace Boruc.LabEquip.Services.Equipment.API
 {
+	using Boruc.LabEquip.Services.Equipment.Infrastructure;
+	using Infrastructure.AutofacModules;
+	using Infrastructure.Filters;
+
 	public class Startup
 	{
 		public Startup(IConfiguration configuration)
@@ -61,9 +62,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			app.UseSwagger()
 				.UseSwaggerUI(options =>
 				{
-					options.SwaggerEndpoint(
-						@"/swagger/v1/swagger.json",
-						"Equipment.API V1");
+					options.SwaggerEndpoint(@"/swagger/v1/swagger.json","Equipment.API V1");
 					options.OAuthClientId("equipmentswaggerui");
 					options.OAuthAppName("Equipment Swagger UI");
 				});
@@ -101,9 +100,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 						options.UseSqlServer(configuration["ConnectionString"],
 							sqlServerOptionsAction: sqlOptions =>
 							{
-								sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
-								sqlOptions.EnableRetryOnFailure(maxRetryCount: 10,
-									maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+								sqlOptions.MigrationsAssembly(typeof(EquipmentContext).GetTypeInfo().Assembly.GetName().Name);
 							});
 					},
 						ServiceLifetime.Scoped
