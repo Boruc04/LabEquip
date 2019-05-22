@@ -23,7 +23,12 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 			{
 				connection.Open();
 
-				var result = await connection.QueryAsync<Equipment>(@"");
+				var result = await connection.QueryAsync<Equipment>(@"SELECT [Id]
+																	      ,[AddedOnUTC]
+																	      ,[BookId]
+																	      ,[Name]
+																	      ,[Number]
+																		FROM [Boruc.LabEquip.Equipment].[equipment].[equipments]");
 				return result;
 			}
 		}
