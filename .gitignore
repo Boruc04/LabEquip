@@ -271,3 +271,5 @@ pub/
 # Ignore HealthCheckdb
 *healthchecksdb*
 /logs/api
+/src/Services/Equipment/Equipment.API/logs/api/logs.txt
+/src/Services/Equipment/Equipment.API/logs/api

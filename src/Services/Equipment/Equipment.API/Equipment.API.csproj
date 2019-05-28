@@ -5,6 +5,7 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>Boruc.LabEquip.Services.Equipment.API</RootNamespace>
     <AssemblyName>Boruc.LabEquip.Equipment.API</AssemblyName>
+    <UserSecretsId>529b84ad-1990-47b2-a61d-62b4a6877f85</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\GenericExtensions\GenericExtensions.csproj" />
     <ProjectReference Include="..\Equipment.Application\Equipment.Application.csproj" />
     <ProjectReference Include="..\Equipment.Infrastructure\Equipment.Infrastructure.csproj" />
   </ItemGroup>

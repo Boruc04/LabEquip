@@ -16,6 +16,8 @@ namespace Boruc.LabEquip.Services.Equipment.API
 	using Boruc.LabEquip.Services.Equipment.Infrastructure;
 	using Infrastructure.AutofacModules;
 	using Infrastructure.Filters;
+	using Newtonsoft.Json;
+	using System.Collections.Generic;
 
 	public class Startup
 	{
@@ -59,10 +61,14 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			app.UseHttpsRedirection();
 			app.UseMvcWithDefaultRoute();
 
-			app.UseSwagger()
+			app.UseSwagger(swaggerOptions => swaggerOptions.PreSerializeFilters.AddRange(new List<Action<SwaggerDocument, HttpRequest>>()
+				{
+					(swaggerDoc, httpReq) => swaggerDoc.Host = httpReq.Host.Value,
+					(swaggerDoc, httpReq) => swaggerDoc.Schemes = new List<string>{ httpReq.Scheme}
+				}))
 				.UseSwaggerUI(options =>
 				{
-					options.SwaggerEndpoint(@"/swagger/v1/swagger.json","Equipment.API V1");
+					options.SwaggerEndpoint(@"/swagger/v1/swagger.json", "Equipment.API V1");
 					options.OAuthClientId("equipmentswaggerui");
 					options.OAuthAppName("Equipment Swagger UI");
 				});
@@ -79,7 +85,8 @@ namespace Boruc.LabEquip.Services.Equipment.API
 					options.Filters.Add(typeof(HttpGlobalExceptionFilter));
 				})
 				.SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-				.AddControllersAsServices();
+				.AddControllersAsServices()
+				.AddJsonOptions(options => options.SerializerSettings.Formatting = Formatting.Indented);
 
 			services.AddCors(options =>
 			{
@@ -113,6 +120,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			services.AddSwaggerGen(options =>
 			{
 				options.DescribeAllEnumsAsStrings();
+
 				options.SwaggerDoc("v1", new Info()
 				{
 					Title = "Equipment HTTP API",

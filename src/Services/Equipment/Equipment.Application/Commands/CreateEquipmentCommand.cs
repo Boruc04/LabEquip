@@ -2,7 +2,7 @@
 
 namespace Boruc.LabEquip.Services.Equipment.Application.Commands
 {
-	public class CreateEquipmentCommand:IRequest<EquipmentDTO>
+	public class CreateEquipmentCommand:IRequest<bool>
 	{
 		public string Name { get; private set; }
 

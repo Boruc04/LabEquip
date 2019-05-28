@@ -32,5 +32,25 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 				return result;
 			}
 		}
+
+		public async Task<Equipment> GetEquipmentAsync(int equipmentId)
+		{
+			using (var connection = new SqlConnection(_connectionString))
+			{
+				connection.Open();
+
+				var result = await connection.QueryAsync<Equipment>(@"SELECT [Id]
+																	      ,[AddedOnUTC]
+																	      ,[BookId]
+																	      ,[Name]
+																	      ,[Number]
+																		FROM [Boruc.LabEquip.Equipment].[equipment].[equipments] 
+																		WHERE [Id] = @id", new { id = equipmentId });
+				if (result.AsList().Count == 0)
+					throw new KeyNotFoundException();
+
+				return result.AsList()[0];
+			}
+		}
 	}
 }

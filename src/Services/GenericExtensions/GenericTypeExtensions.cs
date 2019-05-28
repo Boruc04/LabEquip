@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Boruc.LabEquip.Services.Equipment.API.Extensions
+namespace Boruc.LabEquip.Services.GenericExtensions
 {
 	public static class GenericTypeExtensions
 	{
