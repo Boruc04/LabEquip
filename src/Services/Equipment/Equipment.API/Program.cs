@@ -21,7 +21,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 			var configuration = GetConfiguration();
 
-			Log.Logger = CreateSerilogLogger(configuration);
+			//Log.Logger = CreateSerilogLogger(configuration);
 
 			try
 			{
