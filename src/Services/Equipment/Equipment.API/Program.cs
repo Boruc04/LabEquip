@@ -7,6 +7,8 @@ using System.IO;
 
 namespace Boruc.LabEquip.Services.Equipment.API
 {
+	using Microsoft.ApplicationInsights.Extensibility;
+
 	public class Program
 	{
 		public static readonly string Namespace = typeof(Program).Namespace;
@@ -43,8 +45,6 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 		private static IConfiguration GetConfiguration()
 		{
-
-
 			var configurationBuilder = new ConfigurationBuilder()
 				.SetBasePath(Directory.GetCurrentDirectory())
 				.AddJsonFile("appsettings.json", false, true)
@@ -63,6 +63,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 				.Enrich.FromLogContext()
 				.WriteTo.Console()
 				.WriteTo.File(logsFilePath)
+				.WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Traces)
 				//.WriteTo.Elasticsearch() TODO: introduce when elastic search will be ready.
 				.ReadFrom.Configuration(configuration)
 				.CreateLogger();
