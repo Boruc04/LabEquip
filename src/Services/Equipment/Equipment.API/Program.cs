@@ -65,8 +65,9 @@ namespace Boruc.LabEquip.Services.Equipment.API
 				.WriteTo.File(logsFilePath)
 				.WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Traces)
 				//.WriteTo.Elasticsearch() TODO: introduce when elastic search will be ready.
-				.ReadFrom.Configuration(configuration)
+				//.ReadFrom.Configuration(configuration)
 				.CreateLogger();
+
 			return loggerConfiguration;
 		}
 
