@@ -114,9 +114,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 							{
 								sqlOptions.MigrationsAssembly(typeof(EquipmentContext).GetTypeInfo().Assembly.GetName().Name);
 							});
-					},
-						ServiceLifetime.Scoped
-					);
+					});
 			return services;
 		}
 
