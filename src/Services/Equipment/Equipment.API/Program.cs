@@ -63,7 +63,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 				.Enrich.FromLogContext()
 				.WriteTo.Console()
 				.WriteTo.File(logsFilePath)
-				.WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Traces)
+				//.WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Traces)
 				//.WriteTo.Elasticsearch() TODO: introduce when elastic search will be ready.
 				.ReadFrom.Configuration(configuration)
 				.CreateLogger();
