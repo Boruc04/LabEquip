@@ -18,6 +18,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 	using Infrastructure.Filters;
 	using Newtonsoft.Json;
 	using System.Collections.Generic;
+	using Microsoft.AspNetCore.Rewrite;
 
 	public class Startup
 	{
@@ -72,6 +73,10 @@ namespace Boruc.LabEquip.Services.Equipment.API
 					options.OAuthClientId("equipmentswaggerui");
 					options.OAuthAppName("Equipment Swagger UI");
 				});
+
+			var swaggerRewriteOptions = new RewriteOptions();
+			swaggerRewriteOptions.AddRedirect("^$", "swagger");
+			app.UseRewriter(swaggerRewriteOptions);
 
 		}
 	}

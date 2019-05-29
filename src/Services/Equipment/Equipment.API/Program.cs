@@ -14,6 +14,8 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 		public static int Main(string[] args)
 		{
+			CurrentDirectoryHelpers.SetCurrentDirectory();
+
 			var configuration = GetConfiguration();
 
 			Log.Logger = CreateSerilogLogger(configuration);
@@ -41,6 +43,8 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 		private static IConfiguration GetConfiguration()
 		{
+
+
 			var configurationBuilder = new ConfigurationBuilder()
 				.SetBasePath(Directory.GetCurrentDirectory())
 				.AddJsonFile("appsettings.json", false, true)
@@ -51,7 +55,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 		private static ILogger CreateSerilogLogger(IConfiguration configuration)
 		{
-			var logsFilePath = String.Concat(Directory.GetCurrentDirectory(), @"\logs\api\logs.txt");
+			var logsFilePath = string.Concat(Directory.GetCurrentDirectory(), @"\logs\api\logs.txt");
 
 			var loggerConfiguration = new LoggerConfiguration()
 				.MinimumLevel.Verbose()
