@@ -8,6 +8,7 @@ using System.IO;
 namespace Boruc.LabEquip.Services.Equipment.API
 {
 	using Microsoft.ApplicationInsights.Extensibility;
+	using Serilog.Events;
 
 	public class Program
 	{
@@ -59,13 +60,12 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 			var loggerConfiguration = new LoggerConfiguration()
 				.MinimumLevel.Verbose()
+				.MinimumLevel.Override("Microsoft", LogEventLevel.Information)
 				.Enrich.WithProperty("ApplicationContext", AppName)
 				.Enrich.FromLogContext()
 				.WriteTo.Console()
-				.WriteTo.File(logsFilePath)
+				//.WriteTo.File(logsFilePath)
 				.WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Traces)
-				//.WriteTo.Elasticsearch() TODO: introduce when elastic search will be ready.
-				//.ReadFrom.Configuration(configuration)
 				.CreateLogger();
 
 			return loggerConfiguration;
