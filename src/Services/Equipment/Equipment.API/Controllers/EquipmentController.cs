@@ -12,6 +12,12 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 	using Application.Queries;
 	using GenericExtensions;
 
+	/// <summary>
+	/// Equipment controller possible actions:
+	/// - get equipment list
+	/// - get equipment item
+	/// - create new equipment item
+	/// </summary>
 	[Route("api/v1/[controller]")]
 	[ApiController]
 	public class EquipmentController : ControllerBase
@@ -20,6 +26,11 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		private readonly ILogger<EquipmentController> _logger;
 		private readonly IMediator _mediator;
 
+		/// <summary>
+		/// </summary>
+		/// <param name="equipmentQueries"></param>
+		/// <param name="logger"></param>
+		/// <param name="mediator"></param>
 		public EquipmentController(
 			IEquipmentQueries equipmentQueries,
 			ILogger<EquipmentController> logger,
@@ -30,6 +41,10 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 			_mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 		}
 
+		/// <summary>
+		/// Retrieve list of all equipment items
+		/// </summary>
+		/// <response code="200">Returns list of equipment items</response>
 		[Route("")]
 		[HttpGet]
 		[ProducesResponseType(typeof(IEnumerable<Equipment>), StatusCodes.Status200OK)]
@@ -39,6 +54,12 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 			return Ok(equipments);
 		}
 
+		/// <summary>
+		/// Return equipment base on passed equipment id
+		/// </summary>
+		/// <param name="equipmentId">Equipment id</param>
+		/// <response code="200">Returns an item</response>
+		/// <response code="404">If id was not found</response>
 		[Route("{equipmentId:int}")]
 		[HttpGet]
 		[ProducesResponseType(typeof(Equipment), StatusCodes.Status200OK)]
@@ -50,6 +71,22 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 			return Ok(equipment);
 		}
 
+		/// <summary>
+		/// Create an equipment item.
+		/// </summary>
+		/// <remarks>
+		///	Sample request:
+		///
+		///		POST/Equipment
+		///		{
+		///			"name": "Item1",
+		///			"number": "123-1234-123"
+		///		}
+		/// 
+		/// </remarks>
+		/// <param name="createEquipmentCommand"></param>
+		/// <response code="201">Item created with success</response>
+		/// <response code="400">Item was not valid and was not created</response>
 		[Route("")]
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status201Created)]

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore;
+﻿#pragma warning disable CS1591
+
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;

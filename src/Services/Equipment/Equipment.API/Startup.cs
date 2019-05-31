@@ -1,4 +1,6 @@
-﻿using Autofac;
+﻿#pragma warning disable CS1591
+
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +20,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 	using Infrastructure.Filters;
 	using Newtonsoft.Json;
 	using System.Collections.Generic;
+	using System.IO;
 	using Microsoft.AspNetCore.Rewrite;
 
 	public class Startup
@@ -33,7 +36,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 		{
 			services.AddCustomMvc()
 				.AddCustomDbContext(Configuration)
-				.AddCustomSwagger(Configuration)
+				.AddCustomSwagger()
 				.AddCustomConfiguration(Configuration);
 
 			var container = new ContainerBuilder();
@@ -118,7 +121,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			return services;
 		}
 
-		public static IServiceCollection AddCustomSwagger(this IServiceCollection services, IConfiguration configuration)
+		public static IServiceCollection AddCustomSwagger(this IServiceCollection services)
 		{
 			services.AddSwaggerGen(options =>
 			{
@@ -126,11 +129,22 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 				options.SwaggerDoc("v1", new Info()
 				{
-					Title = "Equipment HTTP API",
+					Title = "Laboratory equipment API",
 					Version = "v1",
-					Description = "The Equipment Service HTTP API",
-					TermsOfService = "Terms Of Service"
+					Description = "ASP.NET Core API using CQRS and DDD patterns for supporting Laboratory with equipment storing.",
+					TermsOfService = "None",
+					Contact =  new Contact
+					{
+						Name = "Michał Boruciński",
+						Email = "s12425@pjwstk.edu.pl",
+						Url = "https://twitter.com/mborucinski"
+					}
 				});
+
+				// Set the comments path for the Swagger JSON and UI.
+				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+				options.IncludeXmlComments(xmlPath);
 			});
 
 			//TODO configure oauth

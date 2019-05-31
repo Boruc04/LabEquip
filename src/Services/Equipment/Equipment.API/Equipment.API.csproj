@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -6,14 +6,8 @@
     <RootNamespace>Boruc.LabEquip.Services.Equipment.API</RootNamespace>
     <AssemblyName>Boruc.LabEquip.Equipment.API</AssemblyName>
     <UserSecretsId>529b84ad-1990-47b2-a61d-62b4a6877f85</UserSecretsId>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="logs\**" />
-    <Content Remove="logs\**" />
-    <EmbeddedResource Remove="logs\**" />
-    <None Remove="logs\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />

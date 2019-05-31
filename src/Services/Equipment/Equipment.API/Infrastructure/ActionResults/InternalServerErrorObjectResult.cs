@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿#pragma warning disable CS1591
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.ActionResults

@@ -1,4 +1,6 @@
-﻿using Autofac;
+﻿#pragma warning disable CS1591
+
+using Autofac;
 using FluentValidation;
 using MediatR;
 using System.Reflection;

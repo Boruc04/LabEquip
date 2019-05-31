@@ -1,4 +1,6 @@
-﻿using Autofac;
+﻿#pragma warning disable CS1591
+
+using Autofac;
 
 namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 {
