@@ -18,7 +18,7 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 	/// - get equipment item
 	/// - create new equipment item
 	/// </summary>
-	[Route("api/v1/[controller]")]
+	[Route("api/v1/equipment")]
 	[ApiController]
 	public class EquipmentController : ControllerBase
 	{
@@ -67,7 +67,6 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		public async Task<ActionResult<Equipment>> GetEquipmentAsync(int equipmentId)
 		{
 			var equipment = await _equipmentQueries.GetEquipmentAsync(equipmentId);
-
 			return Ok(equipment);
 		}
 
@@ -91,14 +90,34 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> CreateEquipment([FromBody] CreateEquipmentCommand createEquipmentCommand)
+		public async Task<IActionResult> AddNewEquipment([FromBody] CreateEquipmentCommand createEquipmentCommand)
 		{
 			_logger.LogInformation("Sending command: {CommandName} - {IdProperty}: ({@Command})",
 				createEquipmentCommand.GetGenericTypeName(), nameof(createEquipmentCommand), createEquipmentCommand);
 
 			await _mediator.Send(createEquipmentCommand);
-
 			return StatusCode(StatusCodes.Status201Created);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="addDefinitionOfActionCommand"></param>
+		/// <response code="201">Action created with success</response>
+		/// <response code="400">Action was not valid and was not created</response>
+		[Route("{equipmentId:int}/action")] 
+		[HttpPost]
+		[ProducesResponseType(StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<IActionResult> AddNewDefinitionOfAction([FromBody] AddDefinitionOfActionCommand addDefinitionOfActionCommand)
+		{
+			_logger.LogInformation("Sending command: {CommandName} - {IdProperty}: ({@Command})",
+				addDefinitionOfActionCommand.GetGenericTypeName(),
+				nameof(addDefinitionOfActionCommand),
+				addDefinitionOfActionCommand);
+
+			 await _mediator.Send(addDefinitionOfActionCommand);
+			 return StatusCode(StatusCodes.Status201Created);
 		}
 	}
 }
