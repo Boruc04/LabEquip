@@ -58,7 +58,7 @@ namespace Boruc.LabEquip.Services.SharedKernel
 
 		public static T FromDisplayName<T>(string displayName) where T : Enumeration
 		{
-			var matchingItem = Parse<T, string>(displayName, "display name", item => item.Name == displayName);
+			var matchingItem = Parse<T, string>(displayName, "display name", item => String.Equals(item.Name, displayName, StringComparison.InvariantCultureIgnoreCase));
 			return matchingItem;
 		}
 

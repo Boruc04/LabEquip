@@ -19,12 +19,12 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Validators
 
 		private bool IsValidTaskFrequency(string taskFrequency)
 		{
-			return Enumeration.GetAll<TaskFrequency>().Any(type => type.Name == taskFrequency);
+			return Enumeration.GetAll<TaskFrequency>().Select(type => Enumeration.FromDisplayName<TaskFrequency>(taskFrequency)).Any();
 		}
 
 		private bool IsValidTaskType(string taskType)
 		{
-			return Enumeration.GetAll<TaskType>().Any(type => type.Name == taskType);
+			return Enumeration.GetAll<TaskType>().Select(type => Enumeration.FromDisplayName<TaskType>(taskType)).Any();
 		}
 	}
 }

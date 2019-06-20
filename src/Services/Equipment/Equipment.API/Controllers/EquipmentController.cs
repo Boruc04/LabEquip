@@ -100,8 +100,19 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		}
 
 		/// <summary>
-		/// 
+		/// Create new definition for maintenance task.
 		/// </summary>
+		/// <remarks>
+		///	Sample request:
+		///
+		///		POST/action
+		///		{
+		///			"tasktype": "verification",
+		///			"taskfrequency": "monthly",
+		///			"firstoccurencedatetime": "2019-06-15T00:00:00.000"
+		///		}
+		/// 
+		/// </remarks>
 		/// <param name="addDefinitionOfActionCommand"></param>
 		/// <response code="201">Action created with success</response>
 		/// <response code="400">Action was not valid and was not created</response>
