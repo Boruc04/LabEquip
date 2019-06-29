@@ -23,7 +23,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 			var configuration = GetConfiguration();
 
-			//Log.Logger = CreateSerilogLogger(configuration);
+			Log.Logger = CreateSerilogLogger();
 
 			try
 			{
@@ -56,9 +56,9 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			return configurationBuilder.Build();
 		}
 
-		private static ILogger CreateSerilogLogger(IConfiguration configuration)
+		private static ILogger CreateSerilogLogger()
 		{
-			var logsFilePath = string.Concat(Directory.GetCurrentDirectory(), @"\logs\api\logs.txt");
+			//TODO check this - var logsFilePath = string.Concat(Directory.GetCurrentDirectory(), @"\logs\api\logs.txt");
 
 			var loggerConfiguration = new LoggerConfiguration()
 				.MinimumLevel.Verbose()

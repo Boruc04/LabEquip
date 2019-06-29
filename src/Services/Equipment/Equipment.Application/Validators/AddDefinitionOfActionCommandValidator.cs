@@ -6,10 +6,11 @@ using System.Linq;
 
 namespace Boruc.LabEquip.Services.Equipment.Application.Validators
 {
-	public class AddDefinitionOfActionCommandValidator : AbstractValidator<AddDefinitionOfActionCommand>
+	public class AddDefinitionOfActionCommandValidator : AbstractValidator<CreateActionTypeCommand>
 	{
 		public AddDefinitionOfActionCommandValidator()
 		{
+			RuleFor(command => command.EquipmentId).NotNull();
 			RuleFor(command => command.TaskType).NotNull().WithMessage("Task Type cannot be null.");
 			RuleFor(command => command.TaskType).Must(IsValidTaskType);
 			RuleFor(command => command.TaskFrequency).NotNull().WithMessage("Task Frequency cannot be null");

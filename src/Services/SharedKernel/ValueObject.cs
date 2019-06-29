@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace Boruc.LabEquip.Services.SharedKernel
 {
+	// ReSharper disable All
 	public abstract class ValueObject
 	{
 		protected static bool EqualOperator(ValueObject left, ValueObject right)

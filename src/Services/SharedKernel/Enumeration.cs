@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+// ReSharper disable All
 
 namespace Boruc.LabEquip.Services.SharedKernel
 {

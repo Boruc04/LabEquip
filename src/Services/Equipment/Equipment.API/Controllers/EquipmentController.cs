@@ -20,11 +20,9 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 	/// </summary>
 	[Route("api/v1/equipment")]
 	[ApiController]
-	public class EquipmentController : ControllerBase
+	public class EquipmentController : CustomBaseController
 	{
 		private readonly IEquipmentQueries _equipmentQueries;
-		private readonly ILogger<EquipmentController> _logger;
-		private readonly IMediator _mediator;
 
 		/// <summary>
 		/// </summary>
@@ -34,11 +32,9 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		public EquipmentController(
 			IEquipmentQueries equipmentQueries,
 			ILogger<EquipmentController> logger,
-			IMediator mediator)
+			IMediator mediator) : base(mediator, logger)
 		{
 			_equipmentQueries = equipmentQueries ?? throw new ArgumentNullException(nameof(equipmentQueries));
-			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
-			_mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 		}
 
 		/// <summary>
@@ -92,43 +88,11 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<IActionResult> AddNewEquipment([FromBody] CreateEquipmentCommand createEquipmentCommand)
 		{
-			_logger.LogInformation("Sending command: {CommandName} - {IdProperty}: ({@Command})",
+			Logger.LogInformation("Sending command: {CommandName} - {IdProperty}: ({@Command})",
 				createEquipmentCommand.GetGenericTypeName(), nameof(createEquipmentCommand), createEquipmentCommand);
 
-			await _mediator.Send(createEquipmentCommand);
+			await Mediator.Send(createEquipmentCommand);
 			return StatusCode(StatusCodes.Status201Created);
-		}
-
-		/// <summary>
-		/// Create new definition for maintenance task.
-		/// </summary>
-		/// <remarks>
-		///	Sample request:
-		///
-		///		POST/action
-		///		{
-		///			"tasktype": "verification",
-		///			"taskfrequency": "monthly",
-		///			"firstoccurencedatetime": "2019-06-15T00:00:00.000"
-		///		}
-		/// 
-		/// </remarks>
-		/// <param name="addDefinitionOfActionCommand"></param>
-		/// <response code="201">Action created with success</response>
-		/// <response code="400">Action was not valid and was not created</response>
-		[Route("{equipmentId:int}/action")] 
-		[HttpPost]
-		[ProducesResponseType(StatusCodes.Status201Created)]
-		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> AddNewDefinitionOfAction([FromBody] AddDefinitionOfActionCommand addDefinitionOfActionCommand)
-		{
-			_logger.LogInformation("Sending command: {CommandName} - {IdProperty}: ({@Command})",
-				addDefinitionOfActionCommand.GetGenericTypeName(),
-				nameof(addDefinitionOfActionCommand),
-				addDefinitionOfActionCommand);
-
-			 await _mediator.Send(addDefinitionOfActionCommand);
-			 return StatusCode(StatusCodes.Status201Created);
 		}
 	}
 }

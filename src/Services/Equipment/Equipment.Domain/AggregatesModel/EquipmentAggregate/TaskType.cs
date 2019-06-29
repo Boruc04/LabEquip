@@ -1,7 +1,7 @@
-﻿namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate
-{
-	using Boruc.LabEquip.Services.SharedKernel;
+﻿using Boruc.LabEquip.Services.SharedKernel;
 
+namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate
+{
 	public abstract class TaskType : Enumeration
 	{
 		public static readonly TaskType Verification = new VerificationTaskType();
