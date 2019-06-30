@@ -4,6 +4,7 @@ using MediatR;
 
 namespace Boruc.LabEquip.Services.SharedKernel
 {
+	// ReSharper disable All
 	public abstract class Entity
 	{
 		private int? _requestedHashCode;

@@ -6,6 +6,7 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 
 	public class Book : Entity
 	{
+		// ReSharper disable once NotAccessedField.Local
 		private string _id;
 
 		protected Book()

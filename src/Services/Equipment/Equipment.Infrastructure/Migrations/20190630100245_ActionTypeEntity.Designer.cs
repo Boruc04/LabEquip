@@ -4,14 +4,16 @@ using Boruc.LabEquip.Services.Equipment.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Boruc.LabEquip.Services.Equipment.Infrastructure.Migrations
 {
     [DbContext(typeof(EquipmentContext))]
-    partial class EquipmentContextModelSnapshot : ModelSnapshot
+    [Migration("20190630100245_ActionTypeEntity")]
+    partial class ActionTypeEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +32,6 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.Migrations
                         .HasAnnotation("SqlServer:HiLoSequenceSchema", "equipment")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo);
 
-                    b.Property<int>("EquipmentId");
-
                     b.Property<DateTime>("FirstOccurrence");
 
                     b.Property<int>("TaskFrequencyId");
@@ -39,8 +39,6 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.Migrations
                     b.Property<int>("TaskTypeId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EquipmentId");
 
                     b.HasIndex("TaskFrequencyId");
 
@@ -59,7 +57,7 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books","equipment");
+                    b.ToTable("books","equipment");
                 });
 
             modelBuilder.Entity("Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate.Equipment", b =>
@@ -84,7 +82,7 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("Equipments","equipment");
+                    b.ToTable("equipments","equipment");
                 });
 
             modelBuilder.Entity("Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate.TaskFrequency", b =>
@@ -99,18 +97,6 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TaskFrequencies","equipment");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Monthly"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Yearly"
-                        });
                 });
 
             modelBuilder.Entity("Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate.TaskType", b =>
@@ -125,37 +111,10 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TaskTypes","equipment");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Validation"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Calibration"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Overview"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Repair"
-                        });
                 });
 
             modelBuilder.Entity("Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate.ActionTaskType", b =>
                 {
-                    b.HasOne("Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate.Equipment")
-                        .WithMany("ActionTaskTypes")
-                        .HasForeignKey("EquipmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate.TaskFrequency", "TaskFrequency")
                         .WithMany()
                         .HasForeignKey("TaskFrequencyId");

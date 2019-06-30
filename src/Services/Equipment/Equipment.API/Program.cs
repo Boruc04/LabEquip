@@ -19,11 +19,12 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 		public static int Main(string[] args)
 		{
+			// Hack for .net core 2.2 issue related with - https://github.com/aspnet/AspNetCore/issues/4206
 			CurrentDirectoryHelpers.SetCurrentDirectory();
 
 			var configuration = GetConfiguration();
 
-			//Log.Logger = CreateSerilogLogger(configuration);
+			Log.Logger = CreateSerilogLogger();
 
 			try
 			{
@@ -56,9 +57,9 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			return configurationBuilder.Build();
 		}
 
-		private static ILogger CreateSerilogLogger(IConfiguration configuration)
+		private static ILogger CreateSerilogLogger()
 		{
-			var logsFilePath = string.Concat(Directory.GetCurrentDirectory(), @"\logs\api\logs.txt");
+			//TODO check this - var logsFilePath = string.Concat(Directory.GetCurrentDirectory(), @"\logs\api\logs.txt");
 
 			var loggerConfiguration = new LoggerConfiguration()
 				.MinimumLevel.Verbose()

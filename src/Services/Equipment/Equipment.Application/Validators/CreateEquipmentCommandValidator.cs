@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 
-namespace Boruc.LabEquip.Services.Equipment.Application.Validations
+namespace Boruc.LabEquip.Services.Equipment.Application.Validators
 {
-	using Boruc.LabEquip.Services.Equipment.Application.Commands;
+	using Commands;
 
 	public class CreateEquipmentCommandValidator : AbstractValidator<CreateEquipmentCommand>
 	{

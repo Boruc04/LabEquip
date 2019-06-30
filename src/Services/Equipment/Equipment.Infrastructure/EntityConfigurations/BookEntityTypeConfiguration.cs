@@ -9,7 +9,7 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
 	{
 		public void Configure(EntityTypeBuilder<Book> builder)
 		{
-			builder.ToTable("books", EquipmentContext.DEFAULT_SCHEMA);
+			builder.ToTable("Books", EquipmentContext.DEFAULT_SCHEMA);
 
 			builder.HasKey(b => b.Id);
 

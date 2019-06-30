@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Boruc.LabEquip.Services.Equipment.Application.Queries
@@ -46,10 +47,11 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 																	      ,[Number]
 																		FROM [Boruc.LabEquip.Equipment].[equipment].[equipments] 
 																		WHERE [Id] = @id", new { id = equipmentId });
-				if (result.AsList().Count == 0)
+				var equipments = result.ToList();
+				if (equipments.Count == 0)
 					throw new KeyNotFoundException();
 
-				return result.AsList()[0];
+				return equipments[0];
 			}
 		}
 	}

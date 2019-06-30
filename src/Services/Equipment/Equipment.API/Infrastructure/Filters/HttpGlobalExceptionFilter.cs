@@ -1,5 +1,7 @@
 ﻿#pragma warning disable CS1591
 
+using System.Linq;
+using FluentValidation;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +38,13 @@ namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.Filters
 				};
 
 				problemDetails.Errors.Add("DomainValidations", new[] { context.Exception.Message });
-
+				
+				if (context.Exception.InnerException.GetType() == typeof(ValidationException))
+				{
+					var validationException = (ValidationException) context.Exception.InnerException;
+					problemDetails.Errors.Add(validationException.Message, validationException.Errors.Select(failure => failure.ErrorMessage).ToArray());
+				}
+				
 				context.Result = new BadRequestObjectResult(problemDetails);
 				context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
 			}

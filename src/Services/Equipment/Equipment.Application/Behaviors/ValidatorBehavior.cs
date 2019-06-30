@@ -43,7 +43,7 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Behaviors
 
 				throw new EquipmentDomainException(
 					$"Command Validation Errors for type {typeof(TRequest).Name}",
-					new ValidationException("Validation exception", failures));
+					new ValidationException("Validation exception(s)", failures));
 			}
 
 			return await next();

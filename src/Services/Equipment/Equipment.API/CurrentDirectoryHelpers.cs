@@ -1,6 +1,7 @@
 ﻿#pragma warning disable CS1591
 
 using System;
+// ReSharper disable All
 
 namespace Boruc.LabEquip.Services.Equipment.API
 {

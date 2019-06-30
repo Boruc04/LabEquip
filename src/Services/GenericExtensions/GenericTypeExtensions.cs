@@ -7,7 +7,7 @@ namespace Boruc.LabEquip.Services.GenericExtensions
 	{
 		public static string GetGenericTypeName(this Type type)
 		{
-			var typeName = string.Empty;
+			string typeName;
 
 			if (type.IsGenericType)
 			{
