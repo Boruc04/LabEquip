@@ -4,13 +4,13 @@ using System;
 
 namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
 {
-	using  Domain.AggregatesModel.EquipmentAggregate;
+	using Domain.AggregatesModel.EquipmentAggregate;
 
 	class EquipmentEntityTypeConfiguration : IEntityTypeConfiguration<Equipment>
 	{
 		public void Configure(EntityTypeBuilder<Equipment> builder)
 		{
-			builder.ToTable("equipments", EquipmentContext.DEFAULT_SCHEMA);
+			builder.ToTable("Equipments", EquipmentContext.DEFAULT_SCHEMA);
 
 			builder.HasKey(e => e.Id);
 
@@ -18,8 +18,11 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
 
 			builder.Property(e => e.Id).ForSqlServerUseSequenceHiLo("equipmentseq", EquipmentContext.DEFAULT_SCHEMA);
 
-			builder.Property<string>("Name").IsRequired();
+			builder.Property<string>("Name")
+				.IsRequired();
+
 			builder.Property<string>("Number").IsRequired();
+
 			builder.Property<DateTime>("AddedOnUTC").IsRequired();
 
 			builder.HasOne<Book>()
@@ -27,6 +30,9 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
 				.HasForeignKey("BookId")
 				.IsRequired(false)
 				.OnDelete(DeleteBehavior.Cascade);
+
+			var navigation = builder.Metadata.FindNavigation(nameof(Equipment.ActionTaskTypes));
+			navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 		}
 	}
 }

@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190629113953_ActionTypeEntity.cs" />
+    <Compile Remove="Migrations\20190629211031_ActionTypeEntity.cs" />
+    <Compile Remove="Migrations\20190630095139_ActionTypeEntity.cs" />
+    <Compile Remove="Migrations\20190630095215_ActionTypeEntity.cs" />
+    <Compile Remove="Migrations\20190630100041_ActionTypeEntity.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />

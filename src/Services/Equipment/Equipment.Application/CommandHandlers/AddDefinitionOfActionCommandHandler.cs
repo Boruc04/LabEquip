@@ -1,6 +1,5 @@
 ﻿using Boruc.LabEquip.Services.Equipment.Application.Commands;
 using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
-using Boruc.LabEquip.Services.SharedKernel;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,17 +22,14 @@ namespace Boruc.LabEquip.Services.Equipment.Application.CommandHandlers
 
 		public async Task<bool> Handle(CreateActionTypeCommand request, CancellationToken cancellationToken)
 		{
-			var equipment = _equipmentRepository.GetAsync(request.EquipmentId);
+			var equipment = await _equipmentRepository.GetAsync(request.EquipmentId);
 			if (equipment == null)
 			{
 				return false;
 			}
 
 			_logger.LogInformation("----- Adding action type to the Equipment: {EquipmentId}", request.EquipmentId);
-
-			equipment.Result.AddActionType(request.FirstOccurenceDateTime,
-				Enumeration.FromDisplayName<TaskFrequency>(request.TaskFrequency),
-				Enumeration.FromDisplayName<TaskType>(request.TaskType));
+			equipment.AddActionType(request.FirstOccurenceDateTime, request.TaskFrequencyId, request.TaskTypeId);
 
 			return await _equipmentRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
 		}

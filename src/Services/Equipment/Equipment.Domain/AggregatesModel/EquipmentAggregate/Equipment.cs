@@ -11,12 +11,14 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 		private string _name;
 		private string _number;
 
-		//TODO:public int? GetBookId => _bookId;
-		//TODO:private int? _bookId;
+		public int? GetBookId => _bookId;
+		private int? _bookId;
 
 		private DateTime _addedOnUTC;
 
 		private readonly List<ActionTaskType> _actionTaskTypes;
+		public IReadOnlyCollection<ActionTaskType> ActionTaskTypes => _actionTaskTypes;
+
 
 		protected Equipment()
 		{
@@ -32,14 +34,12 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 			AddEquipmentAddedDomainEvent();
 		}
 
-		public void AddActionType(DateTime firstOccurrence, TaskFrequency taskFrequency, TaskType taskType)
+		public void AddActionType(DateTime firstOccurrence, int taskFrequencyId, int taskTypeId)
 		{
-			var actionTaskType = new ActionTaskType(taskType, taskFrequency, firstOccurrence);
+			var actionTaskType = new ActionTaskType(taskTypeId, taskFrequencyId, firstOccurrence);
 			_actionTaskTypes.Add(actionTaskType);
 		}
-
-
-
+		
 		private void AddEquipmentAddedDomainEvent()
 		{
 			var equipmentAddedDomainEvent = new EquipmentAddedDomainEvent(this);

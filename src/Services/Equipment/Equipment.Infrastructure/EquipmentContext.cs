@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,6 +16,9 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure
 	{
 		public const string DEFAULT_SCHEMA = "equipment";
 		public DbSet<Equipment> Equipments { get; set; }
+		public DbSet<ActionTaskType> ActionTaskTypes { get; set; }
+		public DbSet<TaskType> TaskTypes { get; set; }
+		public DbSet<TaskFrequency> TaskFrequencies { get; set; }
 		public DbSet<Book> Books { get; set; }
 
 		private readonly IMediator _mediator;
@@ -26,8 +30,8 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.ApplyConfiguration(new EquipmentEntityTypeConfiguration());
-			modelBuilder.ApplyConfiguration(new BookEntityTypeConfiguration());
+			modelBuilder.ApplyConfigurationsFromAssembly(
+				typeof(EquipmentEntityTypeConfiguration).GetTypeInfo().Assembly);
 		}
 
 		public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
@@ -51,7 +55,7 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure
 		}
 	}
 
-	public class NoMediator : IMediator
+	internal class NoMediator : IMediator
 	{
 		public Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = new CancellationToken())
 		{

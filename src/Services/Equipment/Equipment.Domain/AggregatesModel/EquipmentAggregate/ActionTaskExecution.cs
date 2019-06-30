@@ -1,6 +1,6 @@
 ﻿namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate
 {
-	internal class MaintenanceTaskExecution
+	internal class ActionTaskExecution
 	{
 	}
 }

@@ -1,5 +1,4 @@
-﻿using Boruc.LabEquip.Services.Equipment.Domain.Exceptions;
-using Boruc.LabEquip.Services.SharedKernel;
+﻿using Boruc.LabEquip.Services.SharedKernel;
 using System;
 using System.Collections.Generic;
 
@@ -7,22 +6,25 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 {
 	public class ActionTaskType : Entity
 	{
-		// ReSharper disable NotAccessedField.Local
-		private TaskType _taskType;
-		private TaskFrequency _taskFrequency;
-		private DateTime _firstOccurrence;
-		private List<MaintenanceTaskExecution> _maintenanceTaskExecutions;
+		public TaskType TaskType { get; private set; }
+		private int _taskTypeId;
 
+		public TaskFrequency TaskFrequency { get; private set; }
+		private int _taskFrequencyId;
+
+		private DateTime _firstOccurrence;
+
+		private List<ActionTaskExecution> _actionTaskExecutions;
 
 		private ActionTaskType()
 		{
-			_maintenanceTaskExecutions = new List<MaintenanceTaskExecution>();
+			_actionTaskExecutions = new List<ActionTaskExecution>();
 		}
 
-		public ActionTaskType(TaskType taskType, TaskFrequency taskFrequency, DateTime firstOccurrence) : this()
+		public ActionTaskType(int taskTypeId, int taskFrequencyId, DateTime firstOccurrence) : this()
 		{
-			_taskType = taskType ?? throw new EquipmentDomainException(nameof(taskType));
-			_taskFrequency = taskFrequency ?? throw new EquipmentDomainException(nameof(taskFrequency));
+			_taskTypeId = taskTypeId;
+			_taskFrequencyId = taskFrequencyId;
 			_firstOccurrence = firstOccurrence;
 		}
 	}

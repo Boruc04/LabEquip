@@ -30,8 +30,8 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		///  
 		///  		POST/action
 		///  		{
-		/// 			"tasktype": "verification",
-		///  			"taskfrequency": "monthly",
+		/// 			"tasktypeid": "1",
+		///  			"taskfrequencyid": "1",
 		///  			"firstoccurencedatetime": "2019-06-15T00:00:00.000"
 		///  		}
 		///   

@@ -19,6 +19,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 		public static int Main(string[] args)
 		{
+			// Hack for .net core 2.2 issue related with - https://github.com/aspnet/AspNetCore/issues/4206
 			CurrentDirectoryHelpers.SetCurrentDirectory();
 
 			var configuration = GetConfiguration();

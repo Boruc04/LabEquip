@@ -2,14 +2,14 @@
 
 namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate
 {
-	public abstract class TaskType : Enumeration
+	public class TaskType : Enumeration
 	{
 		public static readonly TaskType Verification = new VerificationTaskType();
 		public static readonly TaskType Calibration = new CalibrationTaskType();
 		public static readonly TaskType Overview = new OverviewTaskType();
 		public static readonly TaskType Repair = new RepairTaskType();
 
-		protected TaskType(int id, string name) : base(id, name)
+		public TaskType(int id, string name) : base(id, name)
 		{ }
 
 		private class VerificationTaskType : TaskType
