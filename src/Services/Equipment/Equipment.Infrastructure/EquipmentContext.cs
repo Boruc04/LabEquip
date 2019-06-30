@@ -49,7 +49,8 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure
 		public EquipmentContext CreateDbContext(string[] args)
 		{
 			var optionsBuilder = new DbContextOptionsBuilder<EquipmentContext>()
-				.UseSqlServer("Server=.; Database=Boruc.LabEquip.Equipment; Integrated Security=True;");
+				.UseSqlServer("Server=.; Database=Boruc.LabEquip.Equipment; Integrated Security=True;")
+				.EnableSensitiveDataLogging();
 
 			return new EquipmentContext(optionsBuilder.Options, new NoMediator());
 		}

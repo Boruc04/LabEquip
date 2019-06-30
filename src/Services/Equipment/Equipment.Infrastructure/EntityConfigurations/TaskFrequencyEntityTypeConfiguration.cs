@@ -1,6 +1,9 @@
 ﻿using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
+using Boruc.LabEquip.Services.SharedKernel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
 {
@@ -20,6 +23,10 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
 			builder.Property(o => o.Name)
 				.HasMaxLength(200)
 				.IsRequired();
+			
+			//Hack for derived types on seed - https://github.com/aspnet/EntityFrameworkCore/issues/12841
+			var taskFrequencies = Enumeration.GetAll<TaskFrequency>().Select(frequency => new {frequency.Id,frequency.Name});
+			builder.HasData(taskFrequencies);
 		}
 	}
 }

@@ -34,7 +34,7 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 
 		private class RepairTaskType : TaskType
 		{
-			public RepairTaskType() : base(3, "Repair")
+			public RepairTaskType() : base(4, "Repair")
 			{
 			}
 		}
