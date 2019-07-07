@@ -3,46 +3,58 @@ using System.Collections.Generic;
 
 namespace SharedKernelES
 {
-	public abstract class AggregateRoot : IAggregateRoot
+	public abstract class AggregateRoot : IEventProvider<IEvent>
 	{
-		private readonly ICollection<Event> _events = new List<Event>();
+		private readonly List<IEvent> _domainEvents;
+		private readonly Dictionary<Type, Action<IEvent>> _registeredDomainEventHandlersActions;
 
 		public abstract Guid Id { get; }
 		public int Version { get; internal set; }
 
-		void IAggregateRoot.ApplyChanges(Event @event)
+		protected AggregateRoot()
 		{
-			ApplyChanges(@event);
+			_registeredDomainEventHandlersActions = new Dictionary<Type, Action<IEvent>>();
+			_domainEvents = new List<IEvent>();
 		}
 
-		public ICollection<Event> GetPendingEvents()
+		public IEnumerable<IEvent> GetPendingEvents()
 		{
-			return _events;
+			return _domainEvents;
 		}
 
 		public void ClearPendingEvents()
 		{
-			throw new NotImplementedException();
+			_domainEvents.Clear();
 		}
 
-		public void LoadFromHistory(IEnumerable<Event> history)
+		void IEventProvider<IEvent>.LoadFromHistory(IEnumerable<IEvent> historicalEvents)
 		{
-			foreach (var @event in history)
+			foreach (var @event in historicalEvents)
 			{
-				ApplyChange(@event, false);
+				ApplyEvent(@event);
 			}
 		}
 
-		protected void ApplyChanges(Event @event)
+		protected void ApplyChanges(IEvent @event)
 		{
-			ApplyChange(@event, true);
+			ApplyEvent(@event);
+			_domainEvents.Add(@event);
 		}
 
-		private void ApplyChange(Event @event, bool b)
+		private void ApplyEvent(IEvent @event)
 		{
-			throw new NotImplementedException();
+			if (!_registeredDomainEventHandlersActions.TryGetValue(@event.GetType(), out var handler))
+			{
+				throw new UnregisteredDomainEventHandlerException(
+					$"Requested domain event [{@event.GetType().FullName}], is not registered in [{GetType().FullName}]");
+			}
+
+			handler(@event);
+		}
+
+		protected void RegisterEvent<TEvent>(Action<IEvent> eventHandler) where TEvent : class, IEvent
+		{
+			_registeredDomainEventHandlersActions.Add(typeof(TEvent), eventHandler);
 		}
 	}
-
-	public class Event { }
 }
