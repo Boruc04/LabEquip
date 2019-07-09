@@ -8,8 +8,8 @@ namespace SharedKernelES
 		private readonly List<IEvent> _domainEvents;
 		private readonly Dictionary<Type, Action<IEvent>> _registeredDomainEventHandlersActions;
 
-		public abstract Guid Id { get; }
-		public int Version { get; internal set; }
+		public Guid Id { get; protected set; }
+		public int Version { get; protected set; }
 
 		protected AggregateRoot()
 		{
@@ -35,7 +35,7 @@ namespace SharedKernelES
 			}
 		}
 
-		protected void ApplyChanges(IEvent @event)
+		protected void ApplyChanges(Event @event)
 		{
 			ApplyEvent(@event);
 			_domainEvents.Add(@event);
@@ -52,9 +52,9 @@ namespace SharedKernelES
 			handler(@event);
 		}
 
-		protected void RegisterEvent<TEvent>(Action<IEvent> eventHandler) where TEvent : class, IEvent
+		protected  void RegisterEvent<TEvent>(Action<TEvent> eventHandler) where TEvent : class, IEvent
 		{
-			_registeredDomainEventHandlersActions.Add(typeof(TEvent), eventHandler);
+			_registeredDomainEventHandlersActions.Add(typeof(TEvent), theEvent => eventHandler(theEvent as TEvent));
 		}
 	}
 }
