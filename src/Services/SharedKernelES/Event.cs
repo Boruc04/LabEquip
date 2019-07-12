@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SharedKernelES
+namespace Boruc.LabEquip.Services.SharedKernelES
 {
 	public class Event : IEvent
 	{

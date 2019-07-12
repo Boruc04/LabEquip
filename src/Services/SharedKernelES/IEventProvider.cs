@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SharedKernelES
+namespace Boruc.LabEquip.Services.SharedKernelES
 {
 	public interface IEventProvider<TEvent> where TEvent : IEvent
 	{

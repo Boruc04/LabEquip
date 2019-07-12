@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
-using MediatR;
 
-namespace SharedKernelES
+namespace Boruc.LabEquip.Services.SharedKernelES
 {
 	public interface IUnitOfWork : IDisposable
 	{
-		void saveAsync();
+		void SaveAsync();
 	}
 }

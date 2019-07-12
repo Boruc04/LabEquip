@@ -1,11 +1,9 @@
 ﻿using System;
 
-namespace SharedKernelES
+namespace Boruc.LabEquip.Services.SharedKernelES
 {
 	public interface IRepository<out TAggregateRoot> where TAggregateRoot : AggregateRoot
 	{
 		IUnitOfWork UnitOfWork { get; }
-		void Add(AggregateRoot aggregateRoot, int expectedVersion);
-		TAggregateRoot GetById(Guid id);
 	}	
 }
