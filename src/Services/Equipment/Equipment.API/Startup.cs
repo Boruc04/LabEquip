@@ -23,7 +23,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 	using System.IO;
 	using Microsoft.AspNetCore.Rewrite;
 
-	public class Startup
+	internal class Startup
 	{
 		public Startup(IConfiguration configuration)
 		{
@@ -44,6 +44,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 
 			container.RegisterModule(new MediatorModule());
 			container.RegisterModule(new ApplicationModule(Configuration["ConnectionString"]));
+			container.RegisterModule(new EventStoreModule(Configuration["EventStoreConnectionString"]));
 
 			return new AutofacServiceProvider(container.Build());
 		}
@@ -84,9 +85,9 @@ namespace Boruc.LabEquip.Services.Equipment.API
 		}
 	}
 
-	static class CustomExtensionsMethods
+	internal static class CustomExtensionsMethods
 	{
-		public static IServiceCollection AddCustomMvc(this IServiceCollection services)
+		internal static IServiceCollection AddCustomMvc(this IServiceCollection services)
 		{
 			services.AddMvc(options =>
 				{
@@ -107,7 +108,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			return services;
 		}
 
-		public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
+		internal static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddEntityFrameworkSqlServer()
 				.AddDbContext<EquipmentContext>(options =>
@@ -121,7 +122,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			return services;
 		}
 
-		public static IServiceCollection AddCustomSwagger(this IServiceCollection services)
+		internal static IServiceCollection AddCustomSwagger(this IServiceCollection services)
 		{
 			services.AddSwaggerGen(options =>
 			{
@@ -151,7 +152,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 			return services;
 		}
 
-		public static IServiceCollection AddCustomConfiguration(this IServiceCollection services, IConfiguration configuration)
+		internal static IServiceCollection AddCustomConfiguration(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddOptions();
 			//TODO check this
