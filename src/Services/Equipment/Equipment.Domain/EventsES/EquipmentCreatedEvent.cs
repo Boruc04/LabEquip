@@ -1,5 +1,5 @@
-﻿using SharedKernelES;
-using System;
+﻿using System;
+using Boruc.LabEquip.Services.SharedKernelES;
 
 namespace Boruc.LabEquip.Services.Equipment.Domain.EventsES
 {

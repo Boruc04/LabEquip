@@ -1,6 +1,6 @@
 ﻿using Boruc.LabEquip.Services.Equipment.Domain.EventsES;
-using SharedKernelES;
 using System;
+using Boruc.LabEquip.Services.SharedKernelES;
 
 namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES
 {
@@ -10,7 +10,7 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 		private string _number;
 		private DateTime _addedOnUTC;
 
-		private Equipment2()
+		protected Equipment2()
 		{
 			// Register internal event handlers
 			registerInternalDomainEventHandlers();
