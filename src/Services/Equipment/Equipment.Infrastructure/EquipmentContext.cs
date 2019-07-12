@@ -20,7 +20,7 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure
 		public DbSet<TaskType> TaskTypes { get; set; }
 		public DbSet<TaskFrequency> TaskFrequencies { get; set; }
 		public DbSet<Book> Books { get; set; }
-
+		
 		private readonly IMediator _mediator;
 
 		public EquipmentContext(DbContextOptions<EquipmentContext> options, IMediator mediator) : base(options)
@@ -30,6 +30,7 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			//Apply all configurations of IEntityTypeConfiguration interface from Assembly.
 			modelBuilder.ApplyConfigurationsFromAssembly(
 				typeof(EquipmentEntityTypeConfiguration).GetTypeInfo().Assembly);
 		}
@@ -46,11 +47,13 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure
 
 	public class EquipmentContextDesignFactory : IDesignTimeDbContextFactory<EquipmentContext>
 	{
+		private const string CONNECTION_STRING = "Server=.; Database=Boruc.LabEquip.Equipment; Integrated Security=True;";
+
 		public EquipmentContext CreateDbContext(string[] args)
 		{
 			var optionsBuilder = new DbContextOptionsBuilder<EquipmentContext>()
-				.UseSqlServer("Server=.; Database=Boruc.LabEquip.Equipment; Integrated Security=True;")
-				.EnableSensitiveDataLogging();
+						.UseSqlServer(CONNECTION_STRING)
+						.EnableSensitiveDataLogging();
 
 			return new EquipmentContext(optionsBuilder.Options, new NoMediator());
 		}
