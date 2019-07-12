@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿// ReSharper disable All
+
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Boruc.LabEquip.Services.Equipment.Infrastructure.Migrations
 {
