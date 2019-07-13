@@ -37,6 +37,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\GenericExtensions\GenericExtensions.csproj" />
     <ProjectReference Include="..\Equipment.Application\Equipment.Application.csproj" />
+    <ProjectReference Include="..\Equipment.EventStore\Equipment.EventStore.csproj" />
     <ProjectReference Include="..\Equipment.Infrastructure\Equipment.Infrastructure.csproj" />
   </ItemGroup>
 

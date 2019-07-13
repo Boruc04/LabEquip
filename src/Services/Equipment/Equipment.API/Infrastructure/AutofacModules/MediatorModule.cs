@@ -29,11 +29,7 @@ namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 			builder.Register<ServiceFactory>(context =>
 			{
 				var componentContext = context.Resolve<IComponentContext>();
-				return t =>
-				{
-					object o;
-					return componentContext.TryResolve(t, out o) ? o : null;
-				};
+				return t => componentContext.TryResolve(t, out var o) ? o : null;
 			});
 
 			builder.RegisterGeneric(typeof(LoggingBehavior<,>)).As(typeof(IPipelineBehavior<,>));

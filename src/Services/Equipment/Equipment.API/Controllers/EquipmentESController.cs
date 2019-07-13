@@ -18,9 +18,9 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 	/// - get equipment item
 	/// - create new equipment item
 	/// </summary>
-	[Route("api/v1/equipment")]
+	[Route("api/v2/equipment")]
 	[ApiController]
-	public class EquipmentController : CustomBaseController
+	public class EquipmentESController : CustomBaseController
 	{
 		private readonly IEquipmentQueries _equipmentQueries;
 
@@ -29,9 +29,9 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		/// <param name="equipmentQueries"></param>
 		/// <param name="logger"></param>
 		/// <param name="mediator"></param>
-		public EquipmentController(
+		public EquipmentESController(
 			IEquipmentQueries equipmentQueries,
-			ILogger<EquipmentController> logger,
+			ILogger<EquipmentESController> logger,
 			IMediator mediator) : base(mediator, logger)
 		{
 			_equipmentQueries = equipmentQueries ?? throw new ArgumentNullException(nameof(equipmentQueries));
@@ -86,13 +86,13 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> AddNewEquipment([FromBody] CreateEquipmentCommand createEquipmentCommand)
+		public async Task<IActionResult> AddNewEquipment([FromBody] CreateEquipmentESCommand createEquipmentCommand)
 		{
 			Logger.LogInformation("Sending command: {CommandName} - {IdProperty}: ({@Command})",
 				createEquipmentCommand.GetGenericTypeName(), nameof(createEquipmentCommand), createEquipmentCommand);
 
-			var equipmentId = await Mediator.Send(createEquipmentCommand);
-			return StatusCode(StatusCodes.Status201Created, equipmentId);
+			var equipmentGuidId = await Mediator.Send(createEquipmentCommand);
+			return StatusCode(StatusCodes.Status201Created,equipmentGuidId);
 		}
 	}
 }

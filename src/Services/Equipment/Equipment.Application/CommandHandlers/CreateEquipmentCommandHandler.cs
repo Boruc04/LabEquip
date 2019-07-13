@@ -9,7 +9,7 @@ namespace Boruc.LabEquip.Services.Equipment.Application.CommandHandlers
 	using Commands;
 	using Domain.AggregatesModel.EquipmentAggregate;
 
-	public class CreateEquipmentCommandHandler : IRequestHandler<CreateEquipmentCommand>
+	public class CreateEquipmentCommandHandler : IRequestHandler<CreateEquipmentCommand, int>
 	{
 		private readonly IEquipmentRepository _equipmentRepository;
 		private readonly ILogger<CreateEquipmentCommandHandler> _logger;
@@ -21,7 +21,7 @@ namespace Boruc.LabEquip.Services.Equipment.Application.CommandHandlers
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 
-		public async Task<Unit> Handle(CreateEquipmentCommand request, CancellationToken cancellationToken)
+		public async Task<int> Handle(CreateEquipmentCommand request, CancellationToken cancellationToken)
 		{
 			var equipment = new Equipment(request.Name, request.Number);
 			_logger.LogInformation("----- Creating Equipment - Equipment: {@equipment}", equipment);
@@ -29,7 +29,7 @@ namespace Boruc.LabEquip.Services.Equipment.Application.CommandHandlers
 			_equipmentRepository.Add(equipment);
 
 			await _equipmentRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
-			return new Unit();
+			return equipment.Id;
 		}
 	}
 }
