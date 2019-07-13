@@ -1,7 +1,3 @@
-Welcome in LabEquip
+<b>Welcome in LabEquip</b>
 
-Instalation steps:
-1. 
-
-Good to know:
-1. LaunchSettings.json - allow to change starting page
+Application is under construction. Any constructive opinions are more than welcome. :)
