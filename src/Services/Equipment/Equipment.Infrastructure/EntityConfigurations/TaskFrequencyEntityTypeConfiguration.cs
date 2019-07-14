@@ -1,10 +1,10 @@
-﻿using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
+﻿using System.Linq;
+using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
 using Boruc.LabEquip.Services.SharedKernel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Linq;
 
-namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
+namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EF.EntityConfigurations
 {
 	class TaskFrequencyEntityTypeConfiguration : IEntityTypeConfiguration<TaskFrequency>
 	{

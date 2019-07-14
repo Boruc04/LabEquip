@@ -1,9 +1,9 @@
-﻿using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
+﻿using System;
+using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
-namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
+namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EF.EntityConfigurations
 {
 	class ActionTaskTypeEntityTypeConfiguration : IEntityTypeConfiguration<ActionTaskType>
 	{

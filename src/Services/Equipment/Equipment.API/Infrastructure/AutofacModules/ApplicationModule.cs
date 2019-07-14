@@ -2,12 +2,12 @@
 
 using Autofac;
 using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES;
+using Boruc.LabEquip.Services.Equipment.Infrastructure.EF.Repositories;
 
 namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 {
 	using Application.Queries;
 	using Domain.AggregatesModel.EquipmentAggregate;
-	using Equipment.Infrastructure.Repositories;
 
 	public class ApplicationModule : Module
 	{

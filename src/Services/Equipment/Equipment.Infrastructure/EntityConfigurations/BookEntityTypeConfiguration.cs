@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EntityConfigurations
+namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EF.EntityConfigurations
 {
-	using Domain.AggregatesModel.EquipmentAggregate;
-	using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 	class BookEntityTypeConfiguration : IEntityTypeConfiguration<Book>
 	{
 		public void Configure(EntityTypeBuilder<Book> builder)

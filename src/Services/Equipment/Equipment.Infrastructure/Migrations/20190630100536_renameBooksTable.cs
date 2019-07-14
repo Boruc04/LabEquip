@@ -2,7 +2,7 @@
 
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Boruc.LabEquip.Services.Equipment.Infrastructure.Migrations
+namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EF.Migrations
 {
     public partial class renameBooksTable : Migration
     {

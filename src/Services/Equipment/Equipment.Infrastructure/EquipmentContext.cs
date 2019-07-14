@@ -1,21 +1,20 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using System;
+﻿using System;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
+using Boruc.LabEquip.Services.Equipment.Infrastructure.EF.EntityConfigurations;
+using Boruc.LabEquip.Services.SharedKernel;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
-namespace Boruc.LabEquip.Services.Equipment.Infrastructure
+namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EF
 {
-	using Domain.AggregatesModel.EquipmentAggregate;
-	using EntityConfigurations;
-	using SharedKernel;
-
 	public class EquipmentContext : DbContext, IUnitOfWork
 	{
 		public const string DEFAULT_SCHEMA = "equipment";
-		public DbSet<Equipment> Equipments { get; set; }
+		public DbSet<Domain.AggregatesModel.EquipmentAggregate.Equipment> Equipments { get; set; }
 		public DbSet<ActionTaskType> ActionTaskTypes { get; set; }
 		public DbSet<TaskType> TaskTypes { get; set; }
 		public DbSet<TaskFrequency> TaskFrequencies { get; set; }

@@ -2,6 +2,7 @@
 
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Boruc.LabEquip.Services.Equipment.Infrastructure.EF;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,13 +16,12 @@ using System.Reflection;
 
 namespace Boruc.LabEquip.Services.Equipment.API
 {
-	using Boruc.LabEquip.Services.Equipment.Infrastructure;
 	using Infrastructure.AutofacModules;
 	using Infrastructure.Filters;
+	using Microsoft.AspNetCore.Rewrite;
 	using Newtonsoft.Json;
 	using System.Collections.Generic;
 	using System.IO;
-	using Microsoft.AspNetCore.Rewrite;
 
 	internal class Startup
 	{
@@ -134,7 +134,7 @@ namespace Boruc.LabEquip.Services.Equipment.API
 					Version = "v1",
 					Description = "ASP.NET Core API using CQRS and DDD patterns for supporting Laboratory with equipment storing.",
 					TermsOfService = "None",
-					Contact =  new Contact
+					Contact = new Contact
 					{
 						Name = "Michał Boruciński",
 						Email = "s12425@pjwstk.edu.pl",
