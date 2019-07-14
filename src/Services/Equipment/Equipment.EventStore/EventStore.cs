@@ -1,13 +1,12 @@
-﻿using Boruc.LabEquip.Services.SharedKernelES;
-using EventStore.ClientAPI;
-using MediatR;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Boruc.LabEquip.Services.SharedKernelES;
+using EventStore.ClientAPI;
+using Newtonsoft.Json;
 
-namespace Boruc.LabEquip.Services.Equipment.EventStore
+namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EventStore
 {
 	public sealed class EventStore : IEventStore
 	{
@@ -15,7 +14,7 @@ namespace Boruc.LabEquip.Services.Equipment.EventStore
 		private const string STREAM_NAME = "testName";
 		private readonly Dictionary<string, long> _transactionDictionary;
 		private readonly string _connectionString = "ConnectTo=tcp://admin:changeit@localhost:1113; HeartBeatTimeout=500";
-		
+
 		public EventStore()
 		{
 			_transactionDictionary = new Dictionary<string, long>();

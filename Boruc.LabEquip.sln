@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "src\Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equipment.Domain", "src\Services\Equipment\Equipment.Domain\Equipment.Domain.csproj", "{183E9A20-DAF5-480F-BBA2-74A0ACAC211C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equipment.Infrastructure", "src\Services\Equipment\Equipment.Infrastructure\Equipment.Infrastructure.csproj", "{BDDC417F-8A85-48E4-9C4E-7E050ACF80B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equipment.Infrastructure.EF", "src\Services\Equipment\Equipment.Infrastructure\Equipment.Infrastructure.EF.csproj", "{BDDC417F-8A85-48E4-9C4E-7E050ACF80B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Equipment", "Equipment", "{EABC719F-11C9-4E11-B960-C155D2A88D4F}"
 EndProject
@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericExtensions", "src\Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernelES", "src\Services\SharedKernelES\SharedKernelES.csproj", "{AEA1EB55-48AF-4EA2-9462-82D104049137}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equipment.EventStore", "src\Services\Equipment\Equipment.EventStore\Equipment.EventStore.csproj", "{C6B388F8-7AF8-4BA0-904A-4A3DF8058437}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equipment.Infrastructure.EventStore", "src\Services\Equipment\Equipment.EventStore\Equipment.Infrastructure.EventStore.csproj", "{C6B388F8-7AF8-4BA0-904A-4A3DF8058437}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

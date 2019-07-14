@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Boruc.LabEquip.Services.Equipment.EventStore</RootNamespace>
-    <AssemblyName>Boruc.LabEquip.Equipment.EventStore</AssemblyName>
+    <RootNamespace>Boruc.LabEquip.Services.Equipment.Infrastructure.EventStore</RootNamespace>
+    <AssemblyName>Boruc.LabEquip.Equipment.Infrastructure.EventStore</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

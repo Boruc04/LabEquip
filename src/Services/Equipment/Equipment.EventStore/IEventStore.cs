@@ -1,8 +1,8 @@
-﻿using Boruc.LabEquip.Services.SharedKernelES;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Boruc.LabEquip.Services.SharedKernelES;
 
-namespace Boruc.LabEquip.Services.Equipment.EventStore
+namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EventStore
 {
 	public interface IEventStore : IUnitOfWork
 	{
