@@ -23,7 +23,7 @@ namespace Boruc.LabEquip.Services.Equipment.Application.CommandHandlers
 		public async Task<Guid> Handle(CreateEquipmentESCommand request, CancellationToken cancellationToken)
 		{
 			var equipmentId = Guid.NewGuid();
-			var equipment = new Equipment2(equipmentId, request.Name, request.Number);
+			var equipment = new EquipmentES(equipmentId, request.Name, request.Number);
 			_logger.LogInformation("----- Creating Equipment - Equipment: {@equipment}", equipment);
 
 			_repository.Add(equipment, -1);

@@ -1,28 +1,31 @@
 ﻿using Boruc.LabEquip.Services.Equipment.Domain.EventsES;
-using System;
 using Boruc.LabEquip.Services.SharedKernelES;
+using System;
 
 namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES
 {
-	public partial class Equipment2 : AggregateRoot
+	public partial class EquipmentES : AggregateRoot
 	{
 		private string _name;
 		private string _number;
 		private DateTime _addedOnUTC;
 
-		protected Equipment2()
+		public EquipmentES()
 		{
 			// Register internal event handlers
 			registerInternalDomainEventHandlers();
 		}
 
-		public Equipment2(Guid id, string name, string number) : this()
+		public EquipmentES(Guid id, string name, string number) : this()
 		{
 			ApplyChanges(new EquipmentCreatedEvent(id, name, number, DateTime.UtcNow));
 		}
+
+		public string GetName() => _name;
+		public string GetNumber() => _number;
 	}
 
-	public partial class Equipment2
+	public partial class EquipmentES
 	{
 		#region DomainEventHandlers
 
