@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using System;
 
 namespace Boruc.LabEquip.Services.Equipment.Application.Commands
 {
@@ -9,7 +8,7 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Commands
 
 		public string Number { get; private set; }
 
-		public CreateEquipmentCommand( string name, string number)
+		public CreateEquipmentCommand(string name, string number)
 		{
 			Name = name;
 			Number = number;

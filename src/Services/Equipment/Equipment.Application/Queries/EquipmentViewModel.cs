@@ -1,5 +1,4 @@
-﻿using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES;
-using System;
+﻿using System;
 
 namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 {
@@ -24,7 +23,8 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 
 		public static EquipmentES MapFromEntity(Domain.AggregatesModel.EquipmentAggregateES.EquipmentES equipment)
 		{
-			switch (equipment) {
+			switch (equipment)
+			{
 				case null:
 					return new EquipmentES
 					{
