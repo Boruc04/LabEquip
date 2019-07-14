@@ -27,7 +27,7 @@ namespace Boruc.LabEquip.Services.SharedKernelES
 			_domainEvents.Clear();
 		}
 
-		void IEventProvider<IEvent>.LoadFromHistory(IEnumerable<IEvent> historicalEvents)
+		public void LoadFromHistory(IEnumerable<IEvent> historicalEvents)
 		{
 			foreach (var @event in historicalEvents)
 			{

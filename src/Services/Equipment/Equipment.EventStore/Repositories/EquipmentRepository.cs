@@ -1,8 +1,8 @@
-﻿using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES;
+﻿using System;
+using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES;
 using Boruc.LabEquip.Services.SharedKernelES;
-using System;
 
-namespace Boruc.LabEquip.Services.Equipment.EventStore.Repositories
+namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EventStore.Repositories
 {
 	public class EquipmentRepository : IEquipmentRepositoryES
 	{
@@ -14,16 +14,17 @@ namespace Boruc.LabEquip.Services.Equipment.EventStore.Repositories
 			_eventStore = eventStore ?? throw new ArgumentNullException(nameof(eventStore));
 		}
 
-		public void Add(Equipment2 aggregateRoot, int expectedVersion)
+		public void Add(EquipmentES aggregateRoot, int expectedVersion)
 		{
 			_eventStore.SaveEvents(aggregateRoot.Id, aggregateRoot.GetPendingEvents(), aggregateRoot.Version);
 		}
 
-		public Equipment2 GetById(Guid id)
+		public EquipmentES GetById(Guid id)
 		{
-
+			var equipment = new EquipmentES();
 			var events = _eventStore.GetEventsForAggregate(id);
-			return null;
+			equipment.LoadFromHistory(events);
+			return equipment;
 		}
 	}
 }
