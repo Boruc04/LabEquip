@@ -3,6 +3,7 @@
 using Autofac;
 using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES;
 using Boruc.LabEquip.Services.Equipment.Infrastructure.EF.Repositories;
+using Equipment.Infrastructure.ES.DB.Repository;
 
 namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 {
@@ -23,7 +24,7 @@ namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 			builder.Register(context => new EquipmentQueries(ConnectionString))
 				.As<IEquipmentQueries>()
 				.InstancePerLifetimeScope();
-			
+
 			builder.RegisterType<EquipmentESQueries>()
 				.As<IEquipmentQueries>()
 				.InstancePerLifetimeScope();
@@ -34,6 +35,10 @@ namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 
 			builder.RegisterType<Services.Equipment.Infrastructure.EventStore.Repositories.EquipmentRepository>()
 				.As<IEquipmentRepositoryES>()
+				.InstancePerLifetimeScope();
+
+			builder.RegisterType<QueryEquipmentRepository>()
+				.As<IReadModelFacade>()
 				.InstancePerLifetimeScope();
 		}
 	}

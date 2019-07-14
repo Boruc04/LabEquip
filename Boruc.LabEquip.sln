@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernelES", "src\Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Equipment.Infrastructure.EventStore", "src\Services\Equipment\Equipment.EventStore\Equipment.Infrastructure.EventStore.csproj", "{C6B388F8-7AF8-4BA0-904A-4A3DF8058437}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equipment.Infrastructure.ES.DB", "src\Services\Equipment\Equipment.Infrastructure.ES.DB\Equipment.Infrastructure.ES.DB.csproj", "{C20E8B61-231D-4842-8FA4-7C83F530E74D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{C6B388F8-7AF8-4BA0-904A-4A3DF8058437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6B388F8-7AF8-4BA0-904A-4A3DF8058437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6B388F8-7AF8-4BA0-904A-4A3DF8058437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C20E8B61-231D-4842-8FA4-7C83F530E74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C20E8B61-231D-4842-8FA4-7C83F530E74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C20E8B61-231D-4842-8FA4-7C83F530E74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C20E8B61-231D-4842-8FA4-7C83F530E74D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{2D4D8583-9906-4DCE-B690-EA74A18B2F34} = {45114F5D-7E65-4833-8F61-558729446677}
 		{AEA1EB55-48AF-4EA2-9462-82D104049137} = {45114F5D-7E65-4833-8F61-558729446677}
 		{C6B388F8-7AF8-4BA0-904A-4A3DF8058437} = {EABC719F-11C9-4E11-B960-C155D2A88D4F}
+		{C20E8B61-231D-4842-8FA4-7C83F530E74D} = {EABC719F-11C9-4E11-B960-C155D2A88D4F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {71D04DDA-90E7-4E84-89CC-0C5B823B4A05}

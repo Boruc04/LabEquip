@@ -28,7 +28,7 @@ namespace Boruc.LabEquip.Equipment.UnitTests.Application
 		[Fact]
 		public async Task GetEquipments_Success()
 		{
-			var fakeDynamicResult = Enumerable.Empty<Equipment>();
+			var fakeDynamicResult = Enumerable.Empty<EquipmentViewModel>();
 			_equipmentQueriesMock.Setup(queries => queries.GetEquipmentsAsync())
 				.Returns(Task.FromResult(fakeDynamicResult));
 

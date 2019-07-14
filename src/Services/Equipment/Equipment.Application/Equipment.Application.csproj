@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\GenericExtensions\GenericExtensions.csproj" />
     <ProjectReference Include="..\Equipment.Domain\Equipment.Domain.csproj" />
+    <ProjectReference Include="..\Equipment.Infrastructure.ES.DB\Equipment.Infrastructure.ES.DB.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,13 +18,13 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 				: throw new ArgumentException(nameof(connectionString));
 		}
 
-		public async Task<IEnumerable<Equipment>> GetEquipmentsAsync()
+		public async Task<IEnumerable<EquipmentViewModel>> GetEquipmentsAsync()
 		{
 			using (var connection = new SqlConnection(_connectionString))
 			{
 				connection.Open();
 
-				var result = await connection.QueryAsync<Equipment>(@"SELECT [Id]
+				var result = await connection.QueryAsync<EquipmentViewModel>(@"SELECT [Id]
 																	      ,[AddedOnUTC]
 																	      ,[BookId]
 																	      ,[Name]
@@ -34,13 +34,13 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 			}
 		}
 
-		public async Task<Equipment> GetEquipmentAsync(int equipmentId)
+		public async Task<EquipmentViewModel> GetEquipmentAsync(int equipmentId)
 		{
 			using (var connection = new SqlConnection(_connectionString))
 			{
 				connection.Open();
 
-				var result = await connection.QueryAsync<Equipment>(@"SELECT [Id]
+				var result = await connection.QueryAsync<EquipmentViewModel>(@"SELECT [Id]
 																	      ,[AddedOnUTC]
 																	      ,[BookId]
 																	      ,[Name]

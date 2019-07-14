@@ -2,7 +2,7 @@
 
 namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 {
-	public class Equipment
+	public class EquipmentViewModel
 	{
 		public int Id { get; set; }
 
@@ -13,7 +13,7 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 		public int BookId { get; set; }
 	}
 
-	public class EquipmentES
+	public class EquipmentESViewModel
 	{
 		public Guid Id { get; set; }
 
@@ -21,25 +21,27 @@ namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 
 		public string Number { get; set; }
 
-		public static EquipmentES MapFromEntity(Domain.AggregatesModel.EquipmentAggregateES.EquipmentES equipment)
+		public static EquipmentESViewModel MapFromEntity(dynamic equipment)
 		{
-			switch (equipment)
+			try
 			{
-				case null:
-					return new EquipmentES
-					{
-						Id = Guid.Empty,
-						Name = string.Empty,
-						Number = string.Empty
-					};
-				default:
-					return new EquipmentES
-					{
-						Id = equipment.Id,
-						Name = equipment.GetName(),
-						Number = equipment.GetNumber()
-					};
+				return new EquipmentESViewModel
+				{
+					Id = equipment.Id,
+					Name = equipment.GetName(),
+					Number = equipment.GetNumber()
+				};
 			}
+			catch (Exception)
+			{
+				//Try parse dynamic other way return empty
+			}
+			return new EquipmentESViewModel
+			{
+				Id = Guid.Empty,
+				Name = string.Empty,
+				Number = string.Empty
+			};
 		}
 	}
 }

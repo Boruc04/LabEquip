@@ -72,8 +72,8 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		/// <response code="200">Returns list of equipment items</response>
 		[Route("")]
 		[HttpGet]
-		[ProducesResponseType(typeof(IEnumerable<Equipment>), StatusCodes.Status200OK)]
-		public async Task<ActionResult<IEnumerable<Equipment>>> GetEquipmentsAsync()
+		[ProducesResponseType(typeof(IEnumerable<EquipmentViewModel>), StatusCodes.Status200OK)]
+		public async Task<ActionResult<IEnumerable<EquipmentViewModel>>> GetEquipmentsAsync()
 		{
 			var equipments = await _equipmentQueries.GetEquipmentsAsync();
 			return Ok(equipments);
@@ -87,9 +87,9 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		/// <response code="404">If id was not found</response>
 		[Route("{equipmentId:int}")]
 		[HttpGet]
-		[ProducesResponseType(typeof(Equipment), StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(EquipmentViewModel), StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		public async Task<ActionResult<Equipment>> GetEquipmentAsync(int equipmentId)
+		public async Task<ActionResult<EquipmentViewModel>> GetEquipmentAsync(int equipmentId)
 		{
 			var equipment = await _equipmentQueries.GetEquipmentAsync(equipmentId);
 			return Ok(equipment);

@@ -1,30 +1,30 @@
-﻿using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES;
+﻿using Equipment.Infrastructure.ES.DB.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Boruc.LabEquip.Services.Equipment.Application.Queries
 {
 	public class EquipmentESQueries : IEquipmentESQueries
 	{
-		private readonly IEquipmentRepositoryES _equipmentRepository;
+		private readonly IReadModelFacade _readModelFacade;
 
-		public EquipmentESQueries(IEquipmentRepositoryES equipmentRepository)
+		public EquipmentESQueries(IReadModelFacade readModelFacade)
 		{
-			_equipmentRepository = equipmentRepository;
+			_readModelFacade = readModelFacade;
 		}
 
-		public async Task<IEnumerable<EquipmentES>> GetEquipmentsAsync()
+		public async Task<IEnumerable<EquipmentESViewModel>> GetEquipmentsAsync()
 		{
-			throw new NotImplementedException();
+			var equipmentEntities = _readModelFacade.GetEquipments();
+			return equipmentEntities.Select(o => new EquipmentESViewModel { Id = o.Id, Name = o.Name, Number = o.Number });
 		}
 
-		public async Task<EquipmentES> GetEquipmentAsync(Guid equipmentId)
+		public async Task<EquipmentESViewModel> GetEquipmentAsync(Guid equipmentId)
 		{
-			// this is temporary shortcut and should be changed into separate read model repository.
-			Domain.AggregatesModel.EquipmentAggregateES.EquipmentES equipment = null;
-			await Task.Run(() => equipment = _equipmentRepository.GetById(equipmentId));
-			return EquipmentES.MapFromEntity(equipment);
+			var equipment = _readModelFacade.GetEquipment(equipmentId);
+			return EquipmentESViewModel.MapFromEntity(equipment);
 		}
 	}
 }
