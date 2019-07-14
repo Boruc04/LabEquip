@@ -1,11 +1,12 @@
 ﻿#pragma warning disable CS1591
 
 using Autofac;
-using Boruc.LabEquip.Services.Equipment.EventStore;
 using System;
 
 namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 {
+	using Equipment.Infrastructure.EventStore;
+
 	public class EventStoreModule : Module
 	{
 		private readonly string _connectionString;
@@ -18,7 +19,7 @@ namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 
 		protected override void Load(ContainerBuilder builder)
 		{
-			builder.Register(context => new EventStore.EventStore())
+			builder.Register(context => new EventStore())
 				.As<IEventStore>().SingleInstance();
 		}
 	}
