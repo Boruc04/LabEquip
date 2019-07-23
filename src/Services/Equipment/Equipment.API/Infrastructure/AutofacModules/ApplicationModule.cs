@@ -26,7 +26,7 @@ namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 				.InstancePerLifetimeScope();
 
 			builder.RegisterType<EquipmentESQueries>()
-				.As<IEquipmentQueries>()
+				.As<IEquipmentESQueries>()
 				.InstancePerLifetimeScope();
 
 			builder.RegisterType<EquipmentRepository>()

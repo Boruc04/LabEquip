@@ -1,13 +1,14 @@
-﻿using System;
-using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 
 namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EF.EntityConfigurations
 {
-	class EquipmentEntityTypeConfiguration : IEntityTypeConfiguration<Domain.AggregatesModel.EquipmentAggregate.Equipment>
+	using Domain.AggregatesModel.EquipmentAggregate;
+
+	class EquipmentEntityTypeConfiguration : IEntityTypeConfiguration<Equipment>
 	{
-		public void Configure(EntityTypeBuilder<Domain.AggregatesModel.EquipmentAggregate.Equipment> builder)
+		public void Configure(EntityTypeBuilder<Equipment> builder)
 		{
 			builder.ToTable("Equipments", EquipmentContext.DEFAULT_SCHEMA);
 
@@ -30,7 +31,7 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EF.EntityConfiguratio
 				.IsRequired(false)
 				.OnDelete(DeleteBehavior.Cascade);
 
-			var navigation = builder.Metadata.FindNavigation(nameof(Domain.AggregatesModel.EquipmentAggregate.Equipment.ActionTaskTypes));
+			var navigation = builder.Metadata.FindNavigation(nameof(Equipment.ActionTaskTypes));
 			navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 		}
 	}

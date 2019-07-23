@@ -20,7 +20,7 @@ namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggr
 		public IReadOnlyCollection<ActionTaskType> ActionTaskTypes => _actionTaskTypes;
 
 
-		protected Equipment()
+		private Equipment()
 		{
 			_addedOnUTC = DateTime.UtcNow;
 			_actionTaskTypes = new List<ActionTaskType>();

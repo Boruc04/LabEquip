@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
-using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregate;
-using Boruc.LabEquip.Services.SharedKernel;
-using Microsoft.EntityFrameworkCore;
 
 namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EF.Repositories
 {
+	using Domain.AggregatesModel.EquipmentAggregate;
+	using SharedKernel;
+
 	public class EquipmentRepository : IEquipmentRepository
 	{
 		private readonly EquipmentContext _context;
@@ -17,17 +18,17 @@ namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EF.Repositories
 			_context = context ?? throw new ArgumentNullException(nameof(context));
 		}
 
-		public Domain.AggregatesModel.EquipmentAggregate.Equipment Add(Domain.AggregatesModel.EquipmentAggregate.Equipment equipment)
+		public Equipment Add(Equipment equipment)
 		{
 			return _context.Equipments.Add(equipment).Entity;
 		}
 
-		public void Update(Domain.AggregatesModel.EquipmentAggregate.Equipment equipment)
+		public void Update(Equipment equipment)
 		{
 			_context.Entry(equipment).State = EntityState.Modified;
 		}
 
-		public Task<Domain.AggregatesModel.EquipmentAggregate.Equipment> GetAsync(int equipmentId)
+		public Task<Equipment> GetAsync(int equipmentId)
 		{
 			return _context.Equipments.FindAsync(equipmentId);
 		}

@@ -46,7 +46,7 @@ namespace Boruc.LabEquip.Services.Equipment.API.Controllers
 		///		POST/Equipment
 		///		{
 		///			"name": "Item1",
-		///			"number": "123-1234-123"
+		///			"number": "1123-1234-123-12"
 		///		}
 		/// 
 		/// </remarks>
