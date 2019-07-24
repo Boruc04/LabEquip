@@ -1,4 +1,5 @@
-# Welcome in LabEquip - engineering work with POC of CQRS with EF and CQRS with ES base on EventStore both written with DDD principals.
+# Welcome in LabEquip - engineering work 
+**POC using CQRS with EF and CQRS and Event Sourcing with <a href="https://eventstore.org/">EventStore</a> both written with DDD principals.**
 
 **NOTE** Application is still under construction. Any constructive opinions are more than welcome. :)
 
