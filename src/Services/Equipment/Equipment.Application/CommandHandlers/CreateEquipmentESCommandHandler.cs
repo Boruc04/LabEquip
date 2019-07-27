@@ -1,6 +1,4 @@
-﻿using Boruc.LabEquip.Services.Equipment.Application.Commands;
-using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
@@ -8,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Boruc.LabEquip.Services.Equipment.Application.CommandHandlers
 {
+	using Commands;
+	using Domain.AggregatesModel.EquipmentAggregateES;
+
 	public class CreateEquipmentESCommandHandler : IRequestHandler<CreateEquipmentESCommand, Guid>
 	{
 		private readonly ILogger<CreateEquipmentESCommandHandler> _logger;

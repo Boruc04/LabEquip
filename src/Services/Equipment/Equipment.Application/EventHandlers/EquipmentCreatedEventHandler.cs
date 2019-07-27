@@ -1,12 +1,13 @@
-﻿using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES;
-using Boruc.LabEquip.Services.Equipment.Domain.EventsES;
-using Equipment.Infrastructure.ES.DB.Repository;
+﻿using Equipment.Infrastructure.ES.DB.Repository;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Boruc.LabEquip.Services.Equipment.Application.EventHandlers
 {
+	using Domain.AggregatesModel.EquipmentAggregateES;
+	using Domain.EventsES;
+
 	public class EquipmentCreatedEventHandler : INotificationHandler<EquipmentCreatedEvent>
 	{
 		private readonly IReadModelFacadeWrite _modelFacadeWrite;

@@ -1,9 +1,10 @@
-﻿using Boruc.LabEquip.Services.Equipment.Domain.EventsES;
-using Boruc.LabEquip.Services.SharedKernelES;
-using System;
+﻿using System;
 
 namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES
 {
+	using EventsES;
+	using SharedKernelES;
+
 	public partial class EquipmentES : AggregateRoot
 	{
 		private string _name;
