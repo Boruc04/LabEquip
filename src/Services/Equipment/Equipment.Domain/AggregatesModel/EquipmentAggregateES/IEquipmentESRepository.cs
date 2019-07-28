@@ -2,5 +2,5 @@
 
 namespace Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES
 {
-	public interface IEquipmentRepositoryES : IRepository<EquipmentES> { }
+	public interface IEquipmentESRepository : IRepository<EquipmentES> { }
 }

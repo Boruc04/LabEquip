@@ -1,15 +1,16 @@
 ﻿using System;
-using Boruc.LabEquip.Services.Equipment.Domain.AggregatesModel.EquipmentAggregateES;
-using Boruc.LabEquip.Services.SharedKernelES;
 
 namespace Boruc.LabEquip.Services.Equipment.Infrastructure.EventStore.Repositories
 {
-	public class EquipmentRepository : IEquipmentRepositoryES
+	using Domain.AggregatesModel.EquipmentAggregateES;
+	using SharedKernelES;
+
+	public class EquipmentESRepository : IEquipmentESRepository
 	{
 		private readonly IEventStore _eventStore;
 		public IUnitOfWork UnitOfWork => _eventStore;
 
-		public EquipmentRepository(IEventStore eventStore)
+		public EquipmentESRepository(IEventStore eventStore)
 		{
 			_eventStore = eventStore ?? throw new ArgumentNullException(nameof(eventStore));
 		}

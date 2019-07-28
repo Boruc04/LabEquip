@@ -33,8 +33,8 @@ namespace Boruc.LabEquip.Services.Equipment.API.Infrastructure.AutofacModules
 				.As<IEquipmentRepository>()
 				.InstancePerLifetimeScope();
 
-			builder.RegisterType<Services.Equipment.Infrastructure.EventStore.Repositories.EquipmentRepository>()
-				.As<IEquipmentRepositoryES>()
+			builder.RegisterType<Services.Equipment.Infrastructure.EventStore.Repositories.EquipmentESRepository>()
+				.As<IEquipmentESRepository>()
 				.InstancePerLifetimeScope();
 
 			builder.RegisterType<QueryEquipmentRepository>()

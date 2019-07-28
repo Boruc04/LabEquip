@@ -11,19 +11,19 @@ namespace Boruc.LabEquip.Services.Equipment.Application.EventHandlers
 	public class EquipmentCreatedEventHandler : INotificationHandler<EquipmentCreatedEvent>
 	{
 		private readonly IReadModelFacadeWrite _modelFacadeWrite;
-		private readonly IEquipmentRepositoryES _equipmentRepositoryES;
+		private readonly IEquipmentESRepository _equipmentESRepository;
 
 		public EquipmentCreatedEventHandler(IReadModelFacadeWrite modelFacadeWrite,
-			IEquipmentRepositoryES equipmentRepositoryES)
+			IEquipmentESRepository equipmentESRepository)
 		{
 			_modelFacadeWrite = modelFacadeWrite;
-			_equipmentRepositoryES = equipmentRepositoryES;
+			_equipmentESRepository = equipmentESRepository;
 		}
 
 		public Task Handle(EquipmentCreatedEvent notification, CancellationToken cancellationToken)
 		{
 			// Get the latest Aggregate snapshot
-			var equipment = _equipmentRepositoryES.GetById(notification.AggregateId);
+			var equipment = _equipmentESRepository.GetById(notification.AggregateId);
 			// Apply event
 			equipment.LoadFromHistory(new[] { notification });
 			// Save in readonly DB.

@@ -12,13 +12,13 @@ namespace Boruc.LabEquip.Services.Equipment.Application.CommandHandlers
 	public class CreateEquipmentESCommandHandler : IRequestHandler<CreateEquipmentESCommand, Guid>
 	{
 		private readonly ILogger<CreateEquipmentESCommandHandler> _logger;
-		private readonly IEquipmentRepositoryES _repository;
+		private readonly IEquipmentESRepository _Repository;
 
 		public CreateEquipmentESCommandHandler(ILogger<CreateEquipmentESCommandHandler> logger,
-			IEquipmentRepositoryES repository)
+			IEquipmentESRepository Repository)
 		{
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
-			_repository = repository ?? throw new ArgumentNullException(nameof(repository));
+			_Repository = Repository ?? throw new ArgumentNullException(nameof(Repository));
 		}
 
 		public async Task<Guid> Handle(CreateEquipmentESCommand request, CancellationToken cancellationToken)
@@ -27,8 +27,8 @@ namespace Boruc.LabEquip.Services.Equipment.Application.CommandHandlers
 			var equipment = new EquipmentES(equipmentId, request.Name, request.Number);
 			_logger.LogInformation("----- Creating Equipment - Equipment: {@equipment}", equipment);
 
-			_repository.Add(equipment, -1);
-			_repository.UnitOfWork.SaveAsync();
+			_Repository.Add(equipment, -1);
+			_Repository.UnitOfWork.SaveAsync();
 
 			return equipmentId;
 		}
