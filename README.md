@@ -10,4 +10,3 @@
 
 ## Inspiration
 Lots of ideas and inspiration comes from <a href="https://github.com/dotnet-architecture/eShopOnContainers">eShopOnContainers by Microsoft</a> project, which I invite you to look into.
-
